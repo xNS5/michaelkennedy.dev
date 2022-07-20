@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+      <meta charset="utf-8">
+      <title>
+Michael Kennedy - Django&#x2F;React Chat Application
+</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="author" content="Michael Kennedy">
+      <meta name=description content="It&#x27;s all Segfaults from Here">
+      <link rel="stylesheet" href='https://michaelkennedy.dev/main.css'>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+      <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+      <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-black.ico'>
+      <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-white.ico'>
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK10RKYRF7"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QK10RKYRF7');
+      </script>
+
+    </head>
+  <body>
+  <nav class="topnav fadeIn" id="topnav" role="navigation">
+  </nav>
+  <main>
+    
+<section class="main style1">
+    <div class="container">
+        <header class="major">
+            <a class="project_title" href="https:&#x2F;&#x2F;github.com&#x2F;xNS5&#x2F;django-react-chat-app"><h1><strong>Django/React Chat Application</strong></h1></a>
+            <h2>A Full-Stack chat application </h2>
+            <h3>ReactJS, Django, REST</h3>
+        </header>
+    </div>
+    <div class="container">
+        <content> <h2 id="about-the-application">About the Application</h2>
+<p>(Please shoot me an email to request access to the application. Considering this was part of a job application I'd like to keep this project as low-profile as possible.)</p>
+<p>This project was given to me as a part of a project-based interview through a third-party hiring company. This was one of the first &quot;interviews&quot; I participated in, and gave me some enlightening
+experiences and insights into what I needed to improve upon as a developer. I was added to a Slack channel with a number of other developers who would be helping me through the interview.
+I was assigned 3 tasks that I was expected to accomplish within ~2 weeks or so. I've interacted with Django before, but React was totally new to me. The tasks were: Fix the application 
+such that two clients can send messages to each other, Add a &quot;read receipt&quot; feature, and redesign the database to allow for 3...n users to share a conversation (i.e. have a group conversation).</p>
+<h3 id="issue-no-1-message-no-go">Issue No. 1 -- Message No Go</h3>
+<p>These issues were spread out between both the backend and the frontend applications. When a user sent a message to another user, the messages weren't showing up in the receiving user, and when the user
+refreshed the page the messages appeared -- but they weren't in descending order. After doing some poking around, I found that the messages were populating the backend database, and were successfully being sent to
+the receiver, but they weren't appearing in the receiver's conversation. I concluded that the messages weren't appearing due to React's state hook not updating. The backend fix was much easier than the frontend fix;
+I just had to flip some variables around. </p>
+<h3 id="issue-no-2-i-read-that">Issue No. 2 -- &quot;I read that...&quot;</h3>
+<p>This feature was a bit harder to implement. I've used chatting applications with read receipts for a large chunk of my life, but I had no real idea how to go about implementing it. I looked at a few existing
+platforms, like Facebook Messenger and Signal. With Facebook Messenger, the read receipt is the other user(s) profile pictures. With Signal, the read receipt has 3 steps: Sent, Delivered, and Read. This would
+require the server to send 3 total signals to a client: one that the server has received the message, that the server has successfully delivered the message, and that the receiving client has read the message. </p>
+<p>Both applications more or less behaved the same, server differences aside. Whenever a client clicked on a conversation with unread messages, the messages were updated to reflect that the message(s) were read.
+I opted to model this feature after Facebook Messenger's behavior to reduce the amount of work on my part. Then came the hard part.</p>
+<p>The database was designed such that a conversation can only exist between two users. There could only be one unique combination of two users that make up a conversation. Each message sent belonged to a conversation.
+I initially thought that the easiest way to implement this was associate the users <code>userId</code> to a particular message, denoting that <code>user</code> has read the most recent unread messages in the conversation. After some thought,
+I realized that I could actually accomplish this by instead representing the read receipt as a <code>boolean</code> in the database and use client-side logic to display the correct read receipt. If the most recent message
+is from the other user, it's assumed that they've read the conversation up until that point. If the message is from the current user and the message is marked as unread, then the other user hasn't read the conversation.
+If it's marked as read, then the read receipt should be moved to the most recent message. </p>
+<h4 id="all-aboard-the-struggle-bus">All Aboard the Struggle Bus</h4>
+<p>The two major issues I faced with this step was that I hadn't ever messed with <a href="https://socket.io/">Websockets</a>, and that I didn't really understand what it meant to <a href="https://stackoverflow.com/questions/48710797/how-do-i-deep-clone-an-object-in-react">&quot;deep copy&quot;</a> a conversation.
+I was given the hint to modify the websocket, but it didn't really click what that meant. I was so hooked (so to speak) on the frontend application, that I didn't think to check the backend for an <em>actual</em> websocket application. That was the biggest
+blocker for this ticket -- I wasn't able to make any meaningful progress because I was unable to test the application. </p>
+<h3 id="issue-no-3-redesign-everything">Issue No. 3 -- Redesign Everything</h3>
+<p>This last issue was to redesign the database such that it allowed for group conversations. A group consisted of 2...n users. This meant that the read receipt notification would need to be updated such that each
+user would have their own read receipt in a conversation. My line of thinking was (and still is) that I could modify the database such that it could allow for 3...n users without having separate tables for conversations
+between only 2 users. Each conversation would be held between a &quot;group&quot; of users. This &quot;group&quot; could be 2...n users. Each &quot;group&quot; would have a conversation, and each conversation would have 1...n messages. Having this concept
+of group membership would also allow for group permissions, like the ability to add/remove users from the conversation for example. </p>
+<h2 id="thoughts">Thoughts</h2>
+<p>All in all this was an interesting experience. This was the first time I've worked on a larger project in a more professional context. While it did show me my strengths and weaknesses, I can't help but
+feel a bit disappointed by this experience. There were at times some issues with communication between myself and the reviewers. When I tried to ask follow-up questions to clarify any concepts that didn't make sense,
+they often went unanswered. My implementation for Issue No. 2 took me a bit more time than I anticipated due to completely skipping over the websocket folder in the backend server. I opted to continue working on the project
+because I was led to believe that the company I was applying for had a hiring freeze in place, and I could continue working on the application without penalty. After I completed the project, I heard nothing back
+about whether I was still being considered as a candidate. </p>
+<p>One piece of feedback that I was a little shocked by was that I didn't communicate often enough. Looking back through the messages I sent, I realized that there was some truth to this. I have a habit of getting engrossed
+in projects, and I believe that's what resulted in my less-than-stellar communication. In my past jobs I was used to having either remote or face-to-face meetings. Communicating solely over messages
+was very easy to forget. It was hard to accept that I could have done better, but this was most definitely a reality check for me. I knew that I was going to be constantly learning
+when I started working, but communication wasn't something that I thought I needed to improve upon.</p>
+<p>In retrospect, while I did learn a great deal about React, Django, and REST API's, I can't help but feel like my time could have been better spent brushing up on 
+Computer Science fundamentals in preparation for interviews.</p>
+ </content>
+    </div>
+</section>
+
+  </main>
+  <footer id="footer">
+    <ul class="icons">
+      
+        <li><a href='https://github.com/xNS5' target="_blank" aria-label='Github Repository URL' class='icon brands alt fa-github'><span class="label">Github Repository URL</span></a></li>
+      
+        <li><a href='https://www.linkedin.com/in/mw-kennedy/' target="_blank" aria-label='Linkedin URL' class='icon brands alt fa-linkedin'><span class="label">Linkedin URL</span></a></li>
+      
+        <li><a href='mailto:michael@michaelkennedy.dev' target="_blank" aria-label='Email Link' class='icon solid alt fa-envelope'><span class="label">Email Link</span></a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2022</li>
+    </ul>
+  </footer>
+
+  <script type="text/javascript">
+    window.onload= function() {
+      var navbar = document.getElementById("topnav");
+      
+      var a = document.createElement('a');
+      a.innerText = "Home";
+      if (!("".includes("http") || "".includes("https"))) {
+        if ("Home" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Home" === "Contact") {
+          a.href = ""
+        } else {
+          a.href = "https://michaelkennedy.dev//";
+        }
+        if ("https://michaelkennedy.dev/projects/django_react_chat_application/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Projects";
+      if (!("projects".includes("http") || "projects".includes("https"))) {
+        if ("Projects" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Projects" === "Contact") {
+          a.href = "projects"
+        } else {
+          a.href = "https://michaelkennedy.dev/projects/";
+        }
+        if ("https://michaelkennedy.dev/projects/django_react_chat_application/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "projects";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Resume";
+      if (!("resume".includes("http") || "resume".includes("https"))) {
+        if ("Resume" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Resume" === "Contact") {
+          a.href = "resume"
+        } else {
+          a.href = "https://michaelkennedy.dev/resume/";
+        }
+        if ("https://michaelkennedy.dev/projects/django_react_chat_application/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "resume";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Github";
+      if (!("https://github.com/xNS5".includes("http") || "https://github.com/xNS5".includes("https"))) {
+        if ("Github" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Github" === "Contact") {
+          a.href = "https://github.com/xNS5"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://github.com/xNS5/";
+        }
+        if ("https://michaelkennedy.dev/projects/django_react_chat_application/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://github.com/xNS5";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Linkedin";
+      if (!("https://www.linkedin.com/in/mw-kennedy/".includes("http") || "https://www.linkedin.com/in/mw-kennedy/".includes("https"))) {
+        if ("Linkedin" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Linkedin" === "Contact") {
+          a.href = "https://www.linkedin.com/in/mw-kennedy/"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://www.linkedin.com/in/mw-kennedy//";
+        }
+        if ("https://michaelkennedy.dev/projects/django_react_chat_application/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://www.linkedin.com/in/mw-kennedy/";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Contact";
+      if (!("mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("http") || "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("https"))) {
+        if ("Contact" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Contact" === "Contact") {
+          a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry "
+        } else {
+          a.href = "https://michaelkennedy.dev/mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry /";
+        }
+        if ("https://michaelkennedy.dev/projects/django_react_chat_application/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      navbar.innerHTML += '<a href="javascript:void(0);" onclick="toggleNav()" class="icon"><i class="fa fa-bars" ></i></a>'
+    }
+
+      const lightSchemeIcon = document.getElementById('light-scheme-icon');
+      const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+        darkSchemeIcon.remove();
+        document.head.append(lightSchemeIcon);
+      } else {
+        lightSchemeIcon.remove();
+        document.head.append(darkSchemeIcon);
+      }
+  </script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/browser.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/breakpoints.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/main.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/util.js'></script>
+  <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+  </body>
+</html>

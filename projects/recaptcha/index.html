@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+      <meta charset="utf-8">
+      <title>
+Michael Kennedy - reCAPTCHA Validator
+</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="author" content="Michael Kennedy">
+      <meta name=description content="It&#x27;s all Segfaults from Here">
+      <link rel="stylesheet" href='https://michaelkennedy.dev/main.css'>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+      <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+      <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-black.ico'>
+      <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-white.ico'>
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK10RKYRF7"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QK10RKYRF7');
+      </script>
+
+    </head>
+  <body>
+  <nav class="topnav fadeIn" id="topnav" role="navigation">
+  </nav>
+  <main>
+    
+<section class="main style1">
+    <div class="container">
+        <header class="major">
+            <a class="project_title" href=""><h1><strong>reCAPTCHA Validator</strong></h1></a>
+            <h2>A small FastAPI server to validate the responses from a reCAPTCHA challenge.</h2>
+            <h3>FastAPI, Python, Javascript, Microsoft Azure</h3>
+        </header>
+    </div>
+    <div class="container">
+        <content> <h2 id="about-recaptcha">About ReCaptcha</h2>
+<p>According to <a href="https://www.google.com/recaptcha/about/">Google</a>:</p>
+<blockquote>
+<p>reCAPTCHA uses an advanced risk analysis engine and adaptive challenges to keep malicious software from engaging in abusive activities on your website. Meanwhile, legitimate users will be able to login, make purchases, view pages, or create accounts and fake users will be blocked. </p>
+</blockquote>
+<p>I wanted to integrate reCAPTCHA into my website, specifically in the &quot;Contact&quot; form. Once it was successfully tested and added to the contact form, Google informed
+me that I wasn't validating the responses and linked the relevant documentation page. When wracking my brain for 
+possibilities, I remembered that <a href="https://fastapi.tiangolo.com/">FastAPI</a> existed. I could have used Node for example,
+but I don't need anything super-big that has a lot of requirements, configurations, yada yada yada. FastAPI fit the bill perfectly. I just wanted something lightweight to send <code>POST</code> requests to the Google API endpoint that didn't expose my reCAPTCHA secret key client side. </p>
+<h2 id="technologies-used">Technologies Used</h2>
+<p>Simply put, I used a <a href="https://fastapi.tiangolo.com/">FastAPI</a> server, a javascript function located in my <a href="https://www.michaelkennedy.dev/contact/">personal website's contact form</a>, and an Azure application to host it. I initially opted to use Heroku as I already had an account, 
+but I thought that I'd use the Azure student credits I had accrued. Migrating my code from Heroku to Azure was painless, and I learned a bit about how to navigate the Azure dashboard. After some light testing, I found out that after
+20 minutes the validation server powers down -- a policy set by Azure for free applications. Going with a paid plan would mean that I wouldn't have to deal with that policy, however there were a few downsides. The biggest issue is that I don't have a regular source of income.
+This application isn't doing anything incredibly expensive computationally, so it ultimately may be much cheaper to run than I initially thought. That said, I'd rather not have to spend money to find out that my application requires a lot of computing time. Secondly, the memory requirements
+for this application are pretty low to begin with. It can easily do its job on the free tier plan, and frankly hasn't even made a dent in the daily quota. </p>
+<p>And that brings me to the issue of the application powering down. After a bit of thought, I realized that it's shutting down due to inactivity after 20 minutes. In order to prevent inactivity, I needed to find a way to keep it awake. If my print server VM had enough space (it's running
+on a little rinkydink Surface 3) I could easily just set up a <a href="https://ostechnix.com/a-beginners-guide-to-cron-jobs/">CRON job</a> that sends a <code>GET</code> request to the reCAPTCHA validator to make sure it's still alive. After a bit of googling, I discovered <a href="https://cron-job.org/en/">cron-job.org</a>.
+It's a service that essentially acts is as if I created a <a href="https://ostechnix.com/a-beginners-guide-to-cron-jobs/">CRON job</a> on a local computer and let it do its thing. While it works, I was curious whether I could replicate the behavior in an Azure application. </p>
+<p>Turns out I could! I created a <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview">Function Application</a> which runs a python script on an interval. I set the interval to run every 15 minutes, however I think I may change it to 18 minutes to minimize the number of requests made.
+While there were a few road bumps like not having the <code>.ssl-key.log</code> file added as an environment variable to my <code>.zshrc</code> file for some bizarre reason, the fix was relatively quick and easy to implement. I'll be monitoring both applications to see how this fix affects the free tier's daily quota. </p>
+<h2 id="thoughts">Thoughts</h2>
+<h3 id="fastapi">FastAPI</h3>
+<p>I hate <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a>. While I'm sure there's a very sound and logical reason to have it, the errors I usually get with CORS don't really explain how to <em>fix</em> my issue.</p>
+<p>This project (along with the CRON project) took me less than 24 hours to throw together in total. Someone in a local Discord server mentioned that they were experimenting with FastAPI, and given the scale
+and impact of my needs I thought it would be a fun, quick project to throw together. </p>
+<h3 id="azure">Azure</h3>
+<p>Azure's documentation needs a bit of work. I was initially hoping to make an application with a few different endpoints for testing purposes, but as it turns out Azure function applications don't support that behavior. This reminds me of some issues I was having with
+<a href="https://docs.microsoft.com/en-us/windows/configuration/guidelines-for-assigned-access-app">Windows' Assigned Access</a>. While I was working in the Viking Union, I was tasked with creating a kiosk device. I wanted to use Assigned Access to achieve this, but I also required
+the use of a specific browser extension. As it turns out, Assigned Access doesn't support browser extensions and this information was <a href="https://docs.microsoft.com/en-us/deployedge/microsoft-edge-configure-kiosk-mode#functional-limitations">buried in the Microsoft documentation</a>.</p>
+<p>The documentation on creating Azure applications is unnecessarily spread out and at times cryptic.</p>
+<p>Had I stayed with Heroku I probably would have the same issue where free-tier application goes to sleep after a set amount of time. Odds are I would have come up with a CRON-like solution to keep it running. That said, Heroku's dashboard is significantly friendlier compared to Azure. Many
+of the settings are pretty self-explanatory whereas compared to Azure -- for example, an App Service has a few tabs which allude to the same function such as &quot;Activity Log&quot;, &quot;Logs&quot;, &quot;App Service logs&quot;, &quot;Log Stream&quot;. End of the day I really just switched to Azure because odds are I'd be working
+with it in a professional environment. Heroku, Azure, Digital Ocean, they'll all get the job done. </p>
+ </content>
+    </div>
+</section>
+
+  </main>
+  <footer id="footer">
+    <ul class="icons">
+      
+        <li><a href='https://github.com/xNS5' target="_blank" aria-label='Github Repository URL' class='icon brands alt fa-github'><span class="label">Github Repository URL</span></a></li>
+      
+        <li><a href='https://www.linkedin.com/in/mw-kennedy/' target="_blank" aria-label='Linkedin URL' class='icon brands alt fa-linkedin'><span class="label">Linkedin URL</span></a></li>
+      
+        <li><a href='mailto:michael@michaelkennedy.dev' target="_blank" aria-label='Email Link' class='icon solid alt fa-envelope'><span class="label">Email Link</span></a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2022</li>
+    </ul>
+  </footer>
+
+  <script type="text/javascript">
+    window.onload= function() {
+      var navbar = document.getElementById("topnav");
+      
+      var a = document.createElement('a');
+      a.innerText = "Home";
+      if (!("".includes("http") || "".includes("https"))) {
+        if ("Home" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Home" === "Contact") {
+          a.href = ""
+        } else {
+          a.href = "https://michaelkennedy.dev//";
+        }
+        if ("https://michaelkennedy.dev/projects/recaptcha/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Projects";
+      if (!("projects".includes("http") || "projects".includes("https"))) {
+        if ("Projects" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Projects" === "Contact") {
+          a.href = "projects"
+        } else {
+          a.href = "https://michaelkennedy.dev/projects/";
+        }
+        if ("https://michaelkennedy.dev/projects/recaptcha/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "projects";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Resume";
+      if (!("resume".includes("http") || "resume".includes("https"))) {
+        if ("Resume" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Resume" === "Contact") {
+          a.href = "resume"
+        } else {
+          a.href = "https://michaelkennedy.dev/resume/";
+        }
+        if ("https://michaelkennedy.dev/projects/recaptcha/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "resume";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Github";
+      if (!("https://github.com/xNS5".includes("http") || "https://github.com/xNS5".includes("https"))) {
+        if ("Github" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Github" === "Contact") {
+          a.href = "https://github.com/xNS5"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://github.com/xNS5/";
+        }
+        if ("https://michaelkennedy.dev/projects/recaptcha/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://github.com/xNS5";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Linkedin";
+      if (!("https://www.linkedin.com/in/mw-kennedy/".includes("http") || "https://www.linkedin.com/in/mw-kennedy/".includes("https"))) {
+        if ("Linkedin" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Linkedin" === "Contact") {
+          a.href = "https://www.linkedin.com/in/mw-kennedy/"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://www.linkedin.com/in/mw-kennedy//";
+        }
+        if ("https://michaelkennedy.dev/projects/recaptcha/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://www.linkedin.com/in/mw-kennedy/";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Contact";
+      if (!("mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("http") || "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("https"))) {
+        if ("Contact" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Contact" === "Contact") {
+          a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry "
+        } else {
+          a.href = "https://michaelkennedy.dev/mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry /";
+        }
+        if ("https://michaelkennedy.dev/projects/recaptcha/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      navbar.innerHTML += '<a href="javascript:void(0);" onclick="toggleNav()" class="icon"><i class="fa fa-bars" ></i></a>'
+    }
+
+      const lightSchemeIcon = document.getElementById('light-scheme-icon');
+      const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+        darkSchemeIcon.remove();
+        document.head.append(lightSchemeIcon);
+      } else {
+        lightSchemeIcon.remove();
+        document.head.append(darkSchemeIcon);
+      }
+  </script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/browser.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/breakpoints.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/main.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/util.js'></script>
+  <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+  </body>
+</html>

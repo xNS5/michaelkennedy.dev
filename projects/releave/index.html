@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+      <meta charset="utf-8">
+      <title>
+Michael Kennedy - ReLeave
+</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="author" content="Michael Kennedy">
+      <meta name=description content="It&#x27;s all Segfaults from Here">
+      <link rel="stylesheet" href='https://michaelkennedy.dev/main.css'>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+      <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+      <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-black.ico'>
+      <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-white.ico'>
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK10RKYRF7"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QK10RKYRF7');
+      </script>
+
+    </head>
+  <body>
+  <nav class="topnav fadeIn" id="topnav" role="navigation">
+  </nav>
+  <main>
+    
+<section class="main style1">
+    <div class="container">
+        <header class="major">
+            <a class="project_title" href="https:&#x2F;&#x2F;github.com&#x2F;xNS5&#x2F;ReLeave"><h1><strong>ReLeave</strong></h1></a>
+            <h2>A cross-platform mobile application designed to aid a person going through Cannabis abuse recovery.</h2>
+            <h3>Flutter (Dart), SQlite</h3>
+        </header>
+    </div>
+    <div class="container">
+        <content> <h2 id="about-releave">About ReLeave</h2>
+<p>I came up with this project over the summer of 2020. I had discovered the <a href="https://reddit.com/r/leaves">/r/Leaves</a> subreddit, and it occurred to me that there may
+not be many applications out there specifically for cannabis abuse. Most applications I came across were a one-size-fits-all type application that
+attempts to work for anyone, applications for alcoholics, people who are dependent on opioids, but not many applications for cannabis dependency.</p>
+<p>Society is chomping at the bit for cannabis legalization in the US. Often times people talk about the wonders that the plant can have on a person's body, how it
+can help people undergoing chemotherapy, treat depression, anxiety, etc. however people don't often talk about cannabis dependency and the effects it can have on a person.</p>
+<p>I had fully intended to create this application on my own, but I saw an opportunity to create this in a class called &quot;Technology for Social Good&quot;. We were asked
+to come up with a project idea and pitch it to the class. I made my pitch, and a few other students also thought that this would be a great project to work on. I decided to do this project in Flutter because technology is always a limiting factor for people. Some peopne can't afford the newest iPhone or the highest-spec
+Android device, so it had to be friendly with most newer OS versions and not be resource-heavy. As a perk, this language is very friendly toward new users and is well documented.</p>
+<p>This application has the following features:</p>
+<ul>
+<li>
+<p>Mood/Craving tracking.</p>
+</li>
+<li>
+<p>Journaling system.</p>
+</li>
+<li>
+<p>Custom goal creation.</p>
+</li>
+<li>
+<p>Tracking features.</p>
+</li>
+<li>
+<p>A badge system that awards the user whenever they reach a milestone (e.g. staying <em>x</em> days sober, saving <em>x</em> dollars by refraining from consuming cannabis products, etc.)</p>
+</li>
+<li>
+<p>Interacting with a community of people who are also attemtping to maintain sobriety.</p>
+<p><img class="project_screenshot_mobile_right" src="/images/releave_home.jpg" alt="Releave Home Screen with two buttons: one blue button with the words 'Community Check-In', and one green button with the words 'Personal Check-in'. In the top
+  right corner are the words 'Days Sober: 366' indicating that the user has been sober for a year and one day."/></p>
+</li>
+</ul>
+<p>While this is purely anecdotal, many of the posts I've seen on <a href="https://reddit.com/r/leaves">/r/Leaves</a> involve a lot of self reflection. People talk about behaviors they developed as a result of their dependency, how they treated others, missed opportunities, and how they felt that day after being sober for an extended period
+of time. To aid with that reflection, we decided to implement a Mood/Craving tracker system which allows them to reflect back on their day. They will have the
+option to rate how they're feeling on a scale from 1-10, and create a journal entry for any thoughts or feelings they have that a simple rating can't describe.</p>
+<p>Also included are a few tracking features: the first is a sobriety tracker, measuring the number of days since the user started their journey; the second
+is a money tracker. When the application is installed for the first time, the user would be asked how much money they spent on cannabis products, how much they
+consume, and the method of consumption. The money tracker will calculate how much they've saved based on that inputted information, as well as how much they've
+refrained from consuming. </p>
+<p>The badge system is an attempt to &quot;gamify&quot; the application -- to make the user want to maintain their sobriety, not dissimilar to the coins used by Alcoholics
+Anonymous but in this case digital and more than just maintaining sobriety for a set amount of time.</p>
+<p>There are a lot of habit tracking applications out there that could be used to help with a person recover from substance abuse. However, many applications are missing a key feature: a community. It's not uncommon for support groups to hold meetings so members can share experiences, support others, and to not feel alone during
+recovery. Many existing applications have a self-hosted platform for users to interact, but a downside of that especially for a new application such as ReLeave is
+getting enough users on the platform in the first place. Instead of building out a platform for users to interact, I had the idea to instead leverage Reddit's <a href="https://reddit.com/r/leaves">/r/Leaves</a> community.</p>
+<img class="project_screenshot_mobile_left" src="/images/releave_rating.jpg" alt="The picture contains a checkbox with the caption 'Did you refrain from using cannabis today?' with a box below that for the user to tick, and 7 sliders corresponding to feelings such as happiness, sadness, craving, for the user to rate their feelings at that given time." />
+<h2 id="technologies-used">Technologies Used</h2>
+<p>Flutter was chosen because, as mentioned before, it's a framework that can transpile code into code that can be run on both iOS and Android devices, 
+allowing people with any device to use it. Reddit is already designed for users to communicate, has a free API that I could leverage, and I wouldn't have to manage 
+another system and deal with user account issues. To achieve this, we used the dart package <a href="https://pub.dev/packages/draw">Draw</a> or Dart Reddit API Wrapper to 
+interact with the subreddit. Data is stored in a local SQlite database, using a custom schema. </p>
+<p>The journaling feature can either save the data to local memory or to post to the <a href="https://reddit.com/r/leaves">/r/Leaves</a> subreddit, provided they already have
+an account.</p>
+<img class="project_screenshot_mobile_right" src="/images/releave_leaves.jpg" alt="A screenshot of the Reddit feature, listing off posts from users of the /r/Leaves subreddit." />
+<h2 id="thoughts">Thoughts</h2>
+<p>This was my first project where I felt satisfied at the completion of the course. Flutter made this application very easy to throw together, and working with
+a team that was motivated and had a vested interest in this project made this an incredibly enjoyable experience. Technology wise, the features are in place
+however they're not the prettiest and the database is quite frankly a mess. I designed the database, but looking back I really didn't know what I was doing. 
+I plan on reviving this project and pushing forward with it now that I have the time, the application is in dire need of a facelift and some stylistic 
+standardization, as well as a complete database overhaul.</p>
+<p>This application was my first mobile application that I've ever worked on, and I plan on seeing it to the end and get it published to both iOS and Android app stores.</p>
+ </content>
+    </div>
+</section>
+
+  </main>
+  <footer id="footer">
+    <ul class="icons">
+      
+        <li><a href='https://github.com/xNS5' target="_blank" aria-label='Github Repository URL' class='icon brands alt fa-github'><span class="label">Github Repository URL</span></a></li>
+      
+        <li><a href='https://www.linkedin.com/in/mw-kennedy/' target="_blank" aria-label='Linkedin URL' class='icon brands alt fa-linkedin'><span class="label">Linkedin URL</span></a></li>
+      
+        <li><a href='mailto:michael@michaelkennedy.dev' target="_blank" aria-label='Email Link' class='icon solid alt fa-envelope'><span class="label">Email Link</span></a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2022</li>
+    </ul>
+  </footer>
+
+  <script type="text/javascript">
+    window.onload= function() {
+      var navbar = document.getElementById("topnav");
+      
+      var a = document.createElement('a');
+      a.innerText = "Home";
+      if (!("".includes("http") || "".includes("https"))) {
+        if ("Home" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Home" === "Contact") {
+          a.href = ""
+        } else {
+          a.href = "https://michaelkennedy.dev//";
+        }
+        if ("https://michaelkennedy.dev/projects/releave/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Projects";
+      if (!("projects".includes("http") || "projects".includes("https"))) {
+        if ("Projects" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Projects" === "Contact") {
+          a.href = "projects"
+        } else {
+          a.href = "https://michaelkennedy.dev/projects/";
+        }
+        if ("https://michaelkennedy.dev/projects/releave/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "projects";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Resume";
+      if (!("resume".includes("http") || "resume".includes("https"))) {
+        if ("Resume" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Resume" === "Contact") {
+          a.href = "resume"
+        } else {
+          a.href = "https://michaelkennedy.dev/resume/";
+        }
+        if ("https://michaelkennedy.dev/projects/releave/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "resume";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Github";
+      if (!("https://github.com/xNS5".includes("http") || "https://github.com/xNS5".includes("https"))) {
+        if ("Github" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Github" === "Contact") {
+          a.href = "https://github.com/xNS5"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://github.com/xNS5/";
+        }
+        if ("https://michaelkennedy.dev/projects/releave/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://github.com/xNS5";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Linkedin";
+      if (!("https://www.linkedin.com/in/mw-kennedy/".includes("http") || "https://www.linkedin.com/in/mw-kennedy/".includes("https"))) {
+        if ("Linkedin" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Linkedin" === "Contact") {
+          a.href = "https://www.linkedin.com/in/mw-kennedy/"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://www.linkedin.com/in/mw-kennedy//";
+        }
+        if ("https://michaelkennedy.dev/projects/releave/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://www.linkedin.com/in/mw-kennedy/";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Contact";
+      if (!("mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("http") || "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("https"))) {
+        if ("Contact" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Contact" === "Contact") {
+          a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry "
+        } else {
+          a.href = "https://michaelkennedy.dev/mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry /";
+        }
+        if ("https://michaelkennedy.dev/projects/releave/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      navbar.innerHTML += '<a href="javascript:void(0);" onclick="toggleNav()" class="icon"><i class="fa fa-bars" ></i></a>'
+    }
+
+      const lightSchemeIcon = document.getElementById('light-scheme-icon');
+      const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+        darkSchemeIcon.remove();
+        document.head.append(lightSchemeIcon);
+      } else {
+        lightSchemeIcon.remove();
+        document.head.append(darkSchemeIcon);
+      }
+  </script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/browser.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/breakpoints.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/main.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/util.js'></script>
+  <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+  </body>
+</html>

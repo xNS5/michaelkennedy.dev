@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+      <meta charset="utf-8">
+      <title>
+Michael Kennedy - WWU Accessibility Engine (ACE)
+</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="author" content="Michael Kennedy">
+      <meta name=description content="It&#x27;s all Segfaults from Here">
+      <link rel="stylesheet" href='https://michaelkennedy.dev/main.css'>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+      <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+      <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-black.ico'>
+      <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-white.ico'>
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK10RKYRF7"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QK10RKYRF7');
+      </script>
+
+    </head>
+  <body>
+  <nav class="topnav fadeIn" id="topnav" role="navigation">
+  </nav>
+  <main>
+    
+<section class="main style1">
+    <div class="container">
+        <header class="major">
+            <a class="project_title" href="https:&#x2F;&#x2F;github.com&#x2F;xNS5&#x2F;WWU-Accessibility-Engine"><h1><strong>WWU Accessibility Engine (ACE)</strong></h1></a>
+            <h2>A full-stack accessibility automation tool developed for Wandke Consulting in Bellingham, Washington.</h2>
+            <h3>Javascript (Vue/Sails), HTML + CSS, Python</h3>
+        </header>
+    </div>
+    <div class="container">
+        <content> <h2 id="about-ace">About ACE</h2>
+<p>This is my capstone project during my senior year at Western Washington University. I led a team of 4 in the development of an accessibility testing program for Daman Wandke of <a href="https://wandke.com/">Wandke Consulting</a>, an accessibility consulting company
+in Bellingham, WA. My team and I spent a year working on a full-stack application to streamline their website accessibility evaluation process. Initially, they used Deque Labs' aXe browser extension to determine whether a given webpage conforms to the World Wide Web Consortium's
+Web Content Accessibility Guidelines (WCAG). From there, they manually entered the data from the accessibility scan into a CSV file, added some comments such as information about the specific WCAG violation, how to remedy that specific violation, and any other relevant notes. In addition
+to aXe, it was requested that we also integrate <a href="https://github.com/vmware/crest">Crest</a> by VMware -- another accessibility testing engine. This is another python-based engine, so the project may need to be refactored to include some sort of python server to run both the spider and Crest.</p>
+<h2 id="demonstration">Demonstration</h2>
+<a href="http://www.youtube.com/watch?v=pBowDT5dDmA">
+<img class="project_demo_video_embed" src="http://img.youtube.com/vi/pBowDT5dDmA/0.jpg" alt="Youtube Video Preview of the WWU ACE project video">
+</a>
+<h2 id="technologies-used">Technologies Used</h2>
+<p>This project uses Sails.js as the backend server, Vue.js as the frontend application, Selenium Webdriver to manipulate installed browsers, and Python to gather sub-pages of the inputted website to use as input on an accessibility scan. Initially the requirements included
+two applications, one to run the accessibility scan and one to edit the results of the scan prior to exporting it to a CSV or PDF file. After analyzing the requirements, our client decided that simply retuning the results in a CSV format -- removing the need for a second
+application.</p>
+<p>The backend server is able to run independently of the frontend, and vice versa. To stress test the backend, I wrote 15 bash shell scripts to send POST requests containing different configurations. These configurations included 
+different lists of websites, different WCAG conformance levels, browser resolutions, and whether to spider a website for a given URL. At the moment it only supports Firefox and Chrome; we considered adding MS Edge to the list of testable
+browsers, but ultimately we decided against it as both Chrome and Edge are chromium-based so the results would be the same for both browsers.</p>
+<p>Integrating the spider was by far the most challenging aspect of this project. It would have been easier to simply use a Javascript web scraper, but there are more robust Python libraries that had the functionality I was looking for.
+There are some Javascript libraries for running Python scripts, but our use case is unique enough to where I had to dig deep into forums and documentation to figure out how to make the python script is callable via POST request.</p>
+<h2 id="thoughts">Thoughts</h2>
+<p>This was an interesting project. This was the first time I've considered the accessibility of my projects and the web in general. Both in passing and in a digital accessibility class, I learned about a case against <a href="https://www.cnbc.com/2019/10/07/dominos-supreme-court.html">Dominoes Pizza</a>
+where a man filed a lawsuit because their website didn't conform to WCAG AA guidelines. It even went all the way up to the Supreme Court. I always assumed (incorrectly so) that big companies such as Dominoes ensured that people of all abilities could use their website and applications.</p>
+<p>This was the first time I took on a long-term project for an actual client and not a professor. I learned a lot about maintaining a professional relationship with someone outside my school, communicating with them on a regular basis to give updates on the status of projects, and leading a team. 
+We decided to use a <a href="https://www.atlassian.com/agile/kanban">Kanban</a> methodology for developing this project because the vast majority of features that were requested were backend-heavy, so doing scrum-style sprints wouldn't have been the best fit. Once the core features were connected and functional,
+we arranged a meeting with our client or sent an email with example output. Often times the email would be the more effective means of communication, as it gave them time to evaluate and think about what's been done so far and if any new features should be added.</p>
+<p>Most of the time features came to fruition through trial and error. Integrating the Spider functionality for example took a significant amount of time researching and testing to implement. The biggest issue that I ran into was determining how to run the spider on both Unix and Windows operating systems.
+I falsely assumed that if I created a virtual environment folder for just a *nix system it would work for any system. After one of my teammates attempted to run it on their Windows computer, errors popped up. I had to spin up a Windows 10 virtual machine to install and test our project, and I found that:</p>
+<ol>
+<li>For some reason Windows 10 is missing a few features which prevents python from installing Scrapy -- the library we used to scrape for subpages of a website. </li>
+<li>Python on Windows 10 has a different virtual environment structure, so checks needed to be added to ensure that the right environment was used whenever the spider is run.</li>
+</ol>
+ </content>
+    </div>
+</section>
+
+  </main>
+  <footer id="footer">
+    <ul class="icons">
+      
+        <li><a href='https://github.com/xNS5' target="_blank" aria-label='Github Repository URL' class='icon brands alt fa-github'><span class="label">Github Repository URL</span></a></li>
+      
+        <li><a href='https://www.linkedin.com/in/mw-kennedy/' target="_blank" aria-label='Linkedin URL' class='icon brands alt fa-linkedin'><span class="label">Linkedin URL</span></a></li>
+      
+        <li><a href='mailto:michael@michaelkennedy.dev' target="_blank" aria-label='Email Link' class='icon solid alt fa-envelope'><span class="label">Email Link</span></a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2022</li>
+    </ul>
+  </footer>
+
+  <script type="text/javascript">
+    window.onload= function() {
+      var navbar = document.getElementById("topnav");
+      
+      var a = document.createElement('a');
+      a.innerText = "Home";
+      if (!("".includes("http") || "".includes("https"))) {
+        if ("Home" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Home" === "Contact") {
+          a.href = ""
+        } else {
+          a.href = "https://michaelkennedy.dev//";
+        }
+        if ("https://michaelkennedy.dev/projects/axe/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Projects";
+      if (!("projects".includes("http") || "projects".includes("https"))) {
+        if ("Projects" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Projects" === "Contact") {
+          a.href = "projects"
+        } else {
+          a.href = "https://michaelkennedy.dev/projects/";
+        }
+        if ("https://michaelkennedy.dev/projects/axe/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "projects";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Resume";
+      if (!("resume".includes("http") || "resume".includes("https"))) {
+        if ("Resume" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Resume" === "Contact") {
+          a.href = "resume"
+        } else {
+          a.href = "https://michaelkennedy.dev/resume/";
+        }
+        if ("https://michaelkennedy.dev/projects/axe/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "resume";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Github";
+      if (!("https://github.com/xNS5".includes("http") || "https://github.com/xNS5".includes("https"))) {
+        if ("Github" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Github" === "Contact") {
+          a.href = "https://github.com/xNS5"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://github.com/xNS5/";
+        }
+        if ("https://michaelkennedy.dev/projects/axe/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://github.com/xNS5";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Linkedin";
+      if (!("https://www.linkedin.com/in/mw-kennedy/".includes("http") || "https://www.linkedin.com/in/mw-kennedy/".includes("https"))) {
+        if ("Linkedin" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Linkedin" === "Contact") {
+          a.href = "https://www.linkedin.com/in/mw-kennedy/"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://www.linkedin.com/in/mw-kennedy//";
+        }
+        if ("https://michaelkennedy.dev/projects/axe/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://www.linkedin.com/in/mw-kennedy/";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Contact";
+      if (!("mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("http") || "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("https"))) {
+        if ("Contact" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Contact" === "Contact") {
+          a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry "
+        } else {
+          a.href = "https://michaelkennedy.dev/mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry /";
+        }
+        if ("https://michaelkennedy.dev/projects/axe/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      navbar.innerHTML += '<a href="javascript:void(0);" onclick="toggleNav()" class="icon"><i class="fa fa-bars" ></i></a>'
+    }
+
+      const lightSchemeIcon = document.getElementById('light-scheme-icon');
+      const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+        darkSchemeIcon.remove();
+        document.head.append(lightSchemeIcon);
+      } else {
+        lightSchemeIcon.remove();
+        document.head.append(darkSchemeIcon);
+      }
+  </script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/browser.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/breakpoints.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/main.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/util.js'></script>
+  <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+      <meta charset="utf-8">
+      <title>
+Michael Kennedy - Contact Me
+</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="author" content="Michael Kennedy">
+      <meta name=description content="It&#x27;s all Segfaults from Here">
+      <link rel="stylesheet" href='https://michaelkennedy.dev/main.css'>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+      <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+      <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-black.ico'>
+      <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://michaelkennedy.dev/icons/code-white.ico'>
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK10RKYRF7"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QK10RKYRF7');
+      </script>
+
+    </head>
+  <body>
+  <nav class="topnav fadeIn" id="topnav" role="navigation">
+  </nav>
+  <main>
+    
+
+<style>
+    /* Add a background color and some padding around the form */
+    .contact_container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .formlabel::after {
+        content:" *";
+        color: red;
+    }
+</style>
+
+
+<section class="main style1 ">
+    <header class="major" style="text-align: center">
+        <h1 id="want-to-get-in-touch">Want to get in touch?</h1>
+
+        <p>Please be aware that I require your IP address to ensure that you're not a bot.<br>
+           If this isn't acceptable, please feel free to shoot me an email at <a href="mailto:michael@michaelkennedy.dev">michael@michaelkennedy.dev</a> to get in touch.
+        </p>
+
+    </header>
+    <div class="container contact_container">
+        <form id="contact-form" class="pageclip-form" onsubmit='return false;' action="https://send.pageclip.co/xsgAwzGUPZLGLFaGYgXtzqLpxkxflZYh/contact-form"  method="POST">
+            <label class="formlabel" for="name">Full Name</label>
+                <input required="required" class="required" type="text" id="name" name="Name" placeholder="Firstname Lastname" />
+
+            <label class="formlabel" for="email">Email</label>
+                <input required="required" class="required" type="email" id="email" name="Email" placeholder="example@mail.com" />
+
+            <label class="formlabel" for="message">Message</label>
+                <textarea required="required" class="required" id="message" name="Message" style="height:200px"></textarea>
+
+            <input type="submit" value="Submit" class="g-recaptcha pageclip-form__submit "
+                    data-sitekey="6LfKKmQeAAAAAD8S4Gd-id0BZTOG0TotJclcy_94"
+                    data-callback='formCallback'
+                    data-action='submit'/>
+        </form>
+        <label style="display: none !important">
+            <input type="checkbox" id="honeypot" value="1" tabindex="-1" autocomplete="off"/> Click here to accept the terms of usage of this contact form.
+        </label>
+    </div>
+
+
+</section>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfKKmQeAAAAAD8S4Gd-id0BZTOG0TotJclcy_94"></script>
+<script type="text/javascript">
+
+    async function formCallback() {
+       const hp = document.getElementById("honeypot");
+       if(!hp.checked){
+           var inputs = document.getElementsByClassName('required');
+           var str = ""
+           for(var i = 0; i < inputs.length; i++){
+               if(inputs[i].value.length === 0){
+                   str += (inputs[i].name.charAt(0).toUpperCase() + inputs[i].name.slice(1)+'\n');
+               }
+           }
+           if(str.length > 0){
+               alert(`Please fill out the following fields:\n\n${str}`)
+           } else {
+               grecaptcha.ready(function() {
+                   grecaptcha.execute('6LfKKmQeAAAAAD8S4Gd-id0BZTOG0TotJclcy_94', {action: 'submit'}).then(async function(token) {
+                       try{
+                           await getIP().then(async (ip) => {
+                               if(ip) {
+                                   await fetch('https://recaptcha-validator.azurewebsites.net/api/v1/', {
+                                       method: 'POST',
+                                       cache: 'no-cache',
+                                       credentials: 'include',
+                                       mode: 'cors',
+                                       headers: {
+                                           'Content-Type': 'application/json',
+                                           'Access-Control-Allow-Origin': "http://localhost:1111"
+                                       },
+                                       redirect: 'follow',
+                                       referrerPolicy: 'no-referrer',
+                                       body: JSON.stringify({
+                                           public_key: '6LfKKmQeAAAAAD8S4Gd-id0BZTOG0TotJclcy_94',
+                                           ip: ip,
+                                           response: token
+                                       })
+                                   }).then(async (response) => {
+                                       response = await response.json()
+                                       if (response['score'] < 0.7) {
+                                           alert("An error occurred while validating the reCAPTCHA data. Please refresh and try again.");
+                                           location.reload();
+                                       } else {
+                                           console.log(document.getElementById("g-recaptcha-response").innerText)
+                                           document.getElementById("g-recaptcha-response").remove();
+                                           document.forms.item(0).submit();
+                                       }
+                                   })
+                               }})
+                       } catch(err){
+                           alert("An error occurred while submitting the form. Please try again, or just shoot me an email.")
+                           console.log(err);
+                       }
+                   });
+               })
+           }
+       } else {
+           console.log("Bad bot.")
+           window.location.href="https://google.com"
+       }
+    }
+
+    async function getIP(){
+        try {
+            return await fetch('https://ipinfo.io/json?token=935f21c830924d', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                cache: 'default',
+            }).then(async (response) => {
+                response = await Promise.resolve(response.json());
+                return response['ip'];
+            });
+        } catch (error) {
+            alert("An error has occurred. Please ensure that your adblocker is disabled and try again.")
+            console.error(error);
+        }
+    }
+
+    window.onbeforeunload = function(){
+        document.forms.item(0).reset()
+    }
+</script>
+
+  </main>
+  <footer id="footer">
+    <ul class="icons">
+      
+        <li><a href='https://github.com/xNS5' target="_blank" aria-label='Github Repository URL' class='icon brands alt fa-github'><span class="label">Github Repository URL</span></a></li>
+      
+        <li><a href='https://www.linkedin.com/in/mw-kennedy/' target="_blank" aria-label='Linkedin URL' class='icon brands alt fa-linkedin'><span class="label">Linkedin URL</span></a></li>
+      
+        <li><a href='mailto:michael@michaelkennedy.dev' target="_blank" aria-label='Email Link' class='icon solid alt fa-envelope'><span class="label">Email Link</span></a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2022</li>
+    </ul>
+  </footer>
+
+  <script type="text/javascript">
+    window.onload= function() {
+      var navbar = document.getElementById("topnav");
+      
+      var a = document.createElement('a');
+      a.innerText = "Home";
+      if (!("".includes("http") || "".includes("https"))) {
+        if ("Home" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Home" === "Contact") {
+          a.href = ""
+        } else {
+          a.href = "https://michaelkennedy.dev//";
+        }
+        if ("https://michaelkennedy.dev/contact/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Projects";
+      if (!("projects".includes("http") || "projects".includes("https"))) {
+        if ("Projects" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Projects" === "Contact") {
+          a.href = "projects"
+        } else {
+          a.href = "https://michaelkennedy.dev/projects/";
+        }
+        if ("https://michaelkennedy.dev/contact/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "projects";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Resume";
+      if (!("resume".includes("http") || "resume".includes("https"))) {
+        if ("Resume" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Resume" === "Contact") {
+          a.href = "resume"
+        } else {
+          a.href = "https://michaelkennedy.dev/resume/";
+        }
+        if ("https://michaelkennedy.dev/contact/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "resume";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Github";
+      if (!("https://github.com/xNS5".includes("http") || "https://github.com/xNS5".includes("https"))) {
+        if ("Github" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Github" === "Contact") {
+          a.href = "https://github.com/xNS5"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://github.com/xNS5/";
+        }
+        if ("https://michaelkennedy.dev/contact/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://github.com/xNS5";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Linkedin";
+      if (!("https://www.linkedin.com/in/mw-kennedy/".includes("http") || "https://www.linkedin.com/in/mw-kennedy/".includes("https"))) {
+        if ("Linkedin" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Linkedin" === "Contact") {
+          a.href = "https://www.linkedin.com/in/mw-kennedy/"
+        } else {
+          a.href = "https://michaelkennedy.dev/https://www.linkedin.com/in/mw-kennedy//";
+        }
+        if ("https://michaelkennedy.dev/contact/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "https://www.linkedin.com/in/mw-kennedy/";
+      }
+      if ("_blank".length > 0) {
+        a.target = "_blank";
+      }
+      navbar.appendChild(a);
+      
+      var a = document.createElement('a');
+      a.innerText = "Contact";
+      if (!("mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("http") || "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ".includes("https"))) {
+        if ("Contact" === "Home") {
+          a.href = "https://michaelkennedy.dev/";
+        } else if("Contact" === "Contact") {
+          a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry "
+        } else {
+          a.href = "https://michaelkennedy.dev/mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry /";
+        }
+        if ("https://michaelkennedy.dev/contact/" === a.href) {
+          a.setAttribute("class", "active");
+        }
+      } else {
+        a.href = "mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ";
+      }
+      if ("".length > 0) {
+        a.target = "";
+      }
+      navbar.appendChild(a);
+      
+      navbar.innerHTML += '<a href="javascript:void(0);" onclick="toggleNav()" class="icon"><i class="fa fa-bars" ></i></a>'
+    }
+
+      const lightSchemeIcon = document.getElementById('light-scheme-icon');
+      const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+        darkSchemeIcon.remove();
+        document.head.append(lightSchemeIcon);
+      } else {
+        lightSchemeIcon.remove();
+        document.head.append(darkSchemeIcon);
+      }
+  </script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/browser.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/breakpoints.min.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/main.js'></script>
+  <script type="text/javascript" src='https://michaelkennedy.dev/js/util.js'></script>
+  <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+  </body>
+</html>
