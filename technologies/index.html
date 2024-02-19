@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css -->
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="#ffffff" name="theme-color" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+  <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-black.ico'>
+  <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-white.ico'>
+  <link rel="stylesheet" href="/main.css">
+
+  
+  
+  <title>
+    
+Michael Kennedy | Languages I&#x27;ve Used
+
+  </title>
+</head>
+
+<body class="has-background-white is-preload">
+  <nav aria-label="section navigation" class="navbar" role="navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger burger" data-target="navMenu" role="button">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end has-text-centered">
+          
+            
+              
+              <a class="navbar-item" href="&#x2F;">
+                Home
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;projects">
+                Projects
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;blog">
+                Blog
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;resume">
+                Resume
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;github.com&#x2F;xNS5">
+                Github
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;mw-kennedy&#x2F;">
+                Linkedin
+              </a>
+              
+              <a class="navbar-item" href="mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ">
+                Contact
+              </a>
+              
+            
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  
+
+  
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <article>
+          <h1 class="title">
+            <strong>Languages I&#x27;ve Used</strong>
+            
+          </h1>
+          
+          <div class="columns is-multiline is-gapless">
+            <div class="column">
+              
+<span class="icon-text has-text-grey">
+  <span class="page_timestamp">Published on <time  datetime="2022-09-06">September 06, 2022</time></span>
+</span>
+
+              </div>
+            </div>
+            <div class="project-content">
+              <p>So far in  my education I've had the opportunity to use Java, C#, C, Flutter (Dart), Javascript + HTML/CSS, and Python. More recently, I've had the most experience doing projects in C -- more by accident than choice. 
+In order, I took Computer Systems II, Operating Systems, Compiler Theory, and Networks all in C. It's an interesting language, but I've had to find creative ways to write C on a computer running macOS. </p>
+<p>The easiest language I've worked with thus far is Flutter. The structure of the code is hierarchical, and it's very easy to throw together a functioning application in a short amount of time. For example, I developed ReLeave in a matter of months with 
+a team of students who had never interacted with the language before. It is however a new language that is still experiencing growing pains. This language has a lot of potential with a ton of community support, and it's incredibly easy for
+new software developers to see their application ideas become reality.</p>
+<p>Javascript + HTML/CSS was heavily used in my capstone project <a href="/projects/axe/">WWU ACE</a> along with a splash of Python. This is the most polished project that I have worked on thus far. Feel free to check out 
+the link to learn more about the project. </p>
+
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  
+
+
+
+  
+  <footer id="footer">
+    <div class="content has-text-centered">
+      
+<div>
+
+  
+
+  
+
+  
+  <a href="https://www.linkedin.com/in/mw-kennedy" target="_blank" title="Linkedin">
+    <span class="icon" title="LinkedIn">
+      <i class="fab fa-linkedin fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+  <a href="https://github.com/xNS5" target="_blank" title="Github">
+    <span class="icon" title="GitHub">
+      <i class="fab fa-github fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+  <a href="mailto:michael@michaelkennedy.dev" target="_blank" title="Email">
+    <span class="icon" title="Email">
+      <i class="far fa-envelope fa-lg"></i>
+    </span>
+  </a>
+  
+  
+  
+
+  
+</div>
+
+    </div>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2023-2024</li>
+    </ul>
+  </footer>
+  
+</body>
+
+<script>
+  const lightSchemeIcon = document.getElementById('light-scheme-icon');
+  const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+
+  if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+    darkSchemeIcon.remove();
+    document.head.append(lightSchemeIcon);
+  } else {
+    lightSchemeIcon.remove();
+    document.head.append(darkSchemeIcon);
+  }
+
+  function htmlDecode(input){
+    let doc = new DOMParser().parseFromString(input, 'text/html');
+    return doc.documentElement.textContent;
+  }
+</script>
+
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/browser.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/breakpoints.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/main.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/util.js'></script>
+<script type="text/javascript" src="https://www.michaelkennedy.dev/js/site.js"></script>
+
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css -->
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="#ffffff" name="theme-color" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+  <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-black.ico'>
+  <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-white.ico'>
+  <link rel="stylesheet" href="/main.css">
+
+  
+  
+  <title>
+    
+    Michael Kennedy
+    
+  </title>
+</head>
+
+<body class="has-background-white is-preload">
+  <nav aria-label="section navigation" class="navbar" role="navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger burger" data-target="navMenu" role="button">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end has-text-centered">
+          
+            
+              
+              <a class="navbar-item" href="&#x2F;">
+                Home
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;projects">
+                Projects
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;blog">
+                Blog
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;resume">
+                Resume
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;github.com&#x2F;xNS5">
+                Github
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;mw-kennedy&#x2F;">
+                Linkedin
+              </a>
+              
+              <a class="navbar-item" href="mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ">
+                Contact
+              </a>
+              
+            
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  
+
+  
+<section class="section">
+  <div class="container">
+    <div class="has-text-centered">
+      <h1 class="title is-2">HTTP 404</h1>
+      <p class="subtitle is-4">
+        It seems you are looking for something that I don't have.
+      </p>
+      
+      <figure class="image is-flex is-justify-content-center is-align-items-center">
+        <img class="is-rounded" src="images&#x2F;profile_picture.png" style="max-width: 192px" />
+      </figure>
+      
+      
+<div>
+
+  
+
+  
+
+  
+  <a href="https://www.linkedin.com/in/mw-kennedy" target="_blank" title="Linkedin">
+    <span class="icon" title="LinkedIn">
+      <i class="fab fa-linkedin fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+  <a href="https://github.com/xNS5" target="_blank" title="Github">
+    <span class="icon" title="GitHub">
+      <i class="fab fa-github fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+  <a href="mailto:michael@michaelkennedy.dev" target="_blank" title="Email">
+    <span class="icon" title="Email">
+      <i class="far fa-envelope fa-lg"></i>
+    </span>
+  </a>
+  
+  
+  
+
+  
+</div>
+
+      <p class="my-6">
+        <a href='https:&#x2F;&#x2F;www.michaelkennedy.dev&#x2F;'>
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+          <span>Home</span>
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+  
+  
+  
+
+  
+  <footer id="footer">
+    <div class="content has-text-centered">
+      
+<div>
+
+  
+
+  
+
+  
+  <a href="https://www.linkedin.com/in/mw-kennedy" target="_blank" title="Linkedin">
+    <span class="icon" title="LinkedIn">
+      <i class="fab fa-linkedin fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+  <a href="https://github.com/xNS5" target="_blank" title="Github">
+    <span class="icon" title="GitHub">
+      <i class="fab fa-github fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+  <a href="mailto:michael@michaelkennedy.dev" target="_blank" title="Email">
+    <span class="icon" title="Email">
+      <i class="far fa-envelope fa-lg"></i>
+    </span>
+  </a>
+  
+  
+  
+
+  
+</div>
+
+    </div>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2023-2024</li>
+    </ul>
+  </footer>
+  
+</body>
+
+<script>
+  const lightSchemeIcon = document.getElementById('light-scheme-icon');
+  const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+
+  if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+    darkSchemeIcon.remove();
+    document.head.append(lightSchemeIcon);
+  } else {
+    lightSchemeIcon.remove();
+    document.head.append(darkSchemeIcon);
+  }
+
+  function htmlDecode(input){
+    let doc = new DOMParser().parseFromString(input, 'text/html');
+    return doc.documentElement.textContent;
+  }
+</script>
+
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/browser.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/breakpoints.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/main.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/util.js'></script>
+<script type="text/javascript" src="https://www.michaelkennedy.dev/js/site.js"></script>
+
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css -->
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="#ffffff" name="theme-color" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+  <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-black.ico'>
+  <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-white.ico'>
+  <link rel="stylesheet" href="/main.css">
+
+  
+  
+  <title>
+    
+Michael Kennedy | UML Class Editor
+
+  </title>
+</head>
+
+<body class="has-background-white is-preload">
+  <nav aria-label="section navigation" class="navbar" role="navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger burger" data-target="navMenu" role="button">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end has-text-centered">
+          
+            
+              
+              <a class="navbar-item" href="&#x2F;">
+                Home
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;projects">
+                Projects
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;blog">
+                Blog
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;resume">
+                Resume
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;github.com&#x2F;xNS5">
+                Github
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;mw-kennedy&#x2F;">
+                Linkedin
+              </a>
+              
+              <a class="navbar-item" href="mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ">
+                Contact
+              </a>
+              
+            
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  
+
+  
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <article>
+          <h1 class="title">
+            <strong>UML Class Editor</strong>
+            
+              - <a href="https:&#x2F;&#x2F;github.com&#x2F;xNS5&#x2F;UmlClassEditor">(Repository Link)</a>
+            
+          </h1>
+          
+            <p class="subtitle">An Android application for creating UML diagrams.</p>
+          
+          <div class="columns is-multiline is-gapless">
+            <div class="column">
+              
+<span class="icon-text has-text-grey">
+  <span class="page_timestamp">Published on <time  datetime="2022-03-01">March 01, 2022</time></span>
+</span>
+
+              </div>
+            </div>
+            <div class="project-content">
+              <hr />
+<h2 id="about-uml-class-editor">About UML Class Editor</h2>
+<p>I came across this project while browsing <a href="https://fossdroid.com/">FOSSdroid</a>. After I took an OOP class, I realized
+the importance of planning out a project before coding it up. In a project with lots of moving parts, I found that it
+was helpful to draw out classes, their attributes, public/private methods, how they should interact, and to use that
+as a &quot;to do&quot; list of sorts. Nothing beats pen and paper, but I had recently purchased a Samsung tablet that came with a stylus, and
+I wanted to take advantage of that. I found websites like <a href="https://draw.io">Draw.io</a> incredibly useful, but it wasn't compatible
+with tablet devices. I really like the tactile experience of interacting with an application or website, so finding
+something similar to Draw.io for an Android tablet was a challenge. I found that the application suited my purposes perfectly,
+however I had a few issues with it. First and foremost, the application toolbar/menu bar color irritated me. It initially
+was a bright purple, which was a bit of an eyesore. Functionality wise, the menu organization wasn't the most intuitive, it had no 
+icons, and there were some bugs related to saving data. </p>
+<p>I had experience working on 2 mobile applications, so tracking down the bugs was fairly easy. All I had to do was set a breakpoint
+and replicate the actions that caused the application to crash.</p>
+<h2 id="thoughts">Thoughts</h2>
+<p>This was a great application, but I had some issues with the way it was initially coded. Firstly, the author didn't wrap file/data operations
+in <code>try(){...}catch(){}</code> blocks, which is why the application was crashing initially. I was trying to run a delete operation when I had no saved projects
+which threw a <code>NullPointerException()</code>, causing the application to crash. That was an easy fix. The next issue I came across was that the application
+used a deprecated API for loading/exporting data, <a href="https://developer.android.com/reference/android/app/Activity#onActivityResult(int,%20int,%20android.content.Intent)"><code>onActivityResult()</code></a>. 
+This wasn't causing the crash, but it was something that needed to be addressed. This took a bit more time to figure out as I didn't fully understand what it did, and how to implement the correct API, 
+<a href="https://developer.android.com/reference/androidx/activity/result/ActivityResultCaller#registerForActivityResult(androidx.activity.result.contract.ActivityResultContract%3CI,%20O%3E,%20androidx.activity.result.ActivityResultCallback%3CO%3E)"><code>registerForActivityResult()</code></a>.</p>
+<h2 id="roadmap">Roadmap</h2>
+<p>I have a few ideas for how to make this application better, at least for my purposes. </p>
+<ul>
+<li>Color customization. I like to be able to choose the theme of the applications I use, like in <a href="https://play.google.com/store/apps/details?id=me.ccrama.redditslide">Slide for Reddit</a> for example
+and I'd love to add that functionality to this application. </li>
+<li>Exporting to different file types. Currently the data exports to .html files, which isn't the most practical when it comes to sharing files with others. I intend to create options to 
+export the diagrams to PDF and possibly JPG/PNG formats. </li>
+<li>Cloud Storage integration. A lot of applications like this have the ability to sign in with a cloud storage account such as Google Drive, One Drive, Dropbox, etc. and I want to add that functionality
+to this application as well. </li>
+<li>Sharing diagrams as PDF/JPG/PNG to either email or some sort of messaging platform. Software development is a highly collaborative profession,
+and adding this feature will make this more functional.</li>
+</ul>
+
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  
+
+
+
+  
+  <footer id="footer">
+    <div class="content has-text-centered">
+      
+<div>
+
+  
+
+  
+
+  
+  <a href="https://www.linkedin.com/in/mw-kennedy" target="_blank" title="Linkedin">
+    <span class="icon" title="LinkedIn">
+      <i class="fab fa-linkedin fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+  <a href="https://github.com/xNS5" target="_blank" title="Github">
+    <span class="icon" title="GitHub">
+      <i class="fab fa-github fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+  <a href="mailto:michael@michaelkennedy.dev" target="_blank" title="Email">
+    <span class="icon" title="Email">
+      <i class="far fa-envelope fa-lg"></i>
+    </span>
+  </a>
+  
+  
+  
+
+  
+</div>
+
+    </div>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2023-2024</li>
+    </ul>
+  </footer>
+  
+</body>
+
+<script>
+  const lightSchemeIcon = document.getElementById('light-scheme-icon');
+  const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+
+  if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+    darkSchemeIcon.remove();
+    document.head.append(lightSchemeIcon);
+  } else {
+    lightSchemeIcon.remove();
+    document.head.append(darkSchemeIcon);
+  }
+
+  function htmlDecode(input){
+    let doc = new DOMParser().parseFromString(input, 'text/html');
+    return doc.documentElement.textContent;
+  }
+</script>
+
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/browser.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/breakpoints.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/main.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/util.js'></script>
+<script type="text/javascript" src="https://www.michaelkennedy.dev/js/site.js"></script>
+
+</html>

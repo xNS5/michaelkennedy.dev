@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css -->
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="#ffffff" name="theme-color" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+  <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-black.ico'>
+  <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-white.ico'>
+  <link rel="stylesheet" href="/main.css">
+
+  
+  
+  <title>
+    
+Michael Kennedy | ReLeave
+
+  </title>
+</head>
+
+<body class="has-background-white is-preload">
+  <nav aria-label="section navigation" class="navbar" role="navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger burger" data-target="navMenu" role="button">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end has-text-centered">
+          
+            
+              
+              <a class="navbar-item" href="&#x2F;">
+                Home
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;projects">
+                Projects
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;blog">
+                Blog
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;resume">
+                Resume
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;github.com&#x2F;xNS5">
+                Github
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;mw-kennedy&#x2F;">
+                Linkedin
+              </a>
+              
+              <a class="navbar-item" href="mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ">
+                Contact
+              </a>
+              
+            
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  
+
+  
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <article>
+          <h1 class="title">
+            <strong>ReLeave</strong>
+            
+              - <a href="https:&#x2F;&#x2F;github.com&#x2F;xNS5&#x2F;ReLeave">(Repository Link)</a>
+            
+          </h1>
+          
+            <p class="subtitle">A cross-platform mobile application designed to aid a person going through Cannabis abuse recovery.</p>
+          
+          <div class="columns is-multiline is-gapless">
+            <div class="column">
+              
+<span class="icon-text has-text-grey">
+  <span class="page_timestamp">Published on <time  datetime="2022-01-02">January 02, 2022</time></span>
+</span>
+
+              </div>
+            </div>
+            <div class="project-content">
+              <hr />
+<h2 id="about-releave">About ReLeave</h2>
+<p>I came up with this project over the summer of 2020. I had discovered the <a href="https://reddit.com/r/leaves">/r/Leaves</a> subreddit, and it occurred to me that there may
+not be many applications out there specifically for cannabis abuse. Most applications I came across were a one-size-fits-all type application that
+attempts to work for anyone, applications for alcoholics, people who are dependent on opioids, but not many applications for cannabis dependency.</p>
+<p>Society is champing at the bit for cannabis legalization in the US. Often times people talk about the wonders that the plant can have on a person's body, how it
+can help people undergoing chemotherapy, treat depression, anxiety, etc. however people don't often talk about cannabis dependency and the effects it can have on a person.</p>
+<p>I had fully intended to create this application on my own, but I saw an opportunity to create this in a class called &quot;Technology for Social Good&quot;. We were asked
+to come up with a project idea and pitch it to the class. I made my pitch, and a few other students also thought that this would be a great project to work on. I decided to do this project in Flutter because technology is always a limiting factor for people. Some peopne can't afford the newest iPhone or the highest-spec
+Android device, so it had to be friendly with most newer OS versions and not be resource-heavy. As a perk, this language is very friendly toward new users and is well documented.</p>
+<img class="project_screenshot_mobile_right" src="/images/releave_rating.jpg" alt="The picture contains a checkbox with the caption 'Did you refrain from using cannabis today?' with a box below that for the user to tick, and 7 sliders corresponding to feelings such as happiness, sadness, craving, for the user to rate their feelings at that given time." />
+<p>This application has the following features:</p>
+<ul>
+ <li>Mood/Craving tracking.</li>
+ <li>Journaling system.</li>
+ <li>Custom goal creation.</li>
+ <li>Tracking features.</li>
+ <li>A badge system that awards the user whenever they reach a milestone (e.g. staying x days sober, saving x dollars by refraining from consuming cannabis products, etc.)</li>
+ <li>Interacting with a community of people who are also attemtping to maintain sobriety.</li> 
+</ul>
+<p>While this is purely anecdotal, many of the posts I've seen on <a href="https://reddit.com/r/leaves">/r/Leaves</a> involve a lot of self reflection. People talk about behaviors they developed as a result of their dependency, how they treated others, missed opportunities, and how they felt that day after being sober for an extended period
+of time. To aid with that reflection, we decided to implement a Mood/Craving tracker system which allows them to reflect back on their day. They will have the
+option to rate how they're feeling on a scale from 1-10, and create a journal entry for any thoughts or feelings they have that a simple rating can't describe.</p>
+<p>Also included are a few tracking features: the first is a sobriety tracker, measuring the number of days since the user started their journey; the second
+is a money tracker. When the application is installed for the first time, the user would be asked how much money they spent on cannabis products, how much they
+consume, and the method of consumption. The money tracker will calculate how much they've saved based on that inputted information, as well as how much they've
+refrained from consuming. </p>
+<p>The badge system is an attempt to &quot;gamify&quot; the application -- to make the user want to maintain their sobriety, not dissimilar to the coins used by Alcoholics
+Anonymous but in this case digital and more than just maintaining sobriety for a set amount of time.</p>
+<p>There are a lot of habit tracking applications out there that could be used to help with a person recover from substance abuse. However, many applications are missing a key feature: a community. It's not uncommon for support groups to hold meetings so members can share experiences, support others, and to not feel alone during
+recovery. Many existing applications have a self-hosted platform for users to interact, but a downside of that especially for a new application such as ReLeave is
+getting enough users on the platform in the first place. Instead of building out a platform for users to interact, I had the idea to instead leverage Reddit's <a href="https://reddit.com/r/leaves">/r/Leaves</a> community.</p>
+<h2 id="technologies-used">Technologies Used</h2>
+<img class="project_screenshot_mobile_right" src="/images/releave_leaves.jpg" alt="A screenshot of the Reddit feature, listing off posts from users of the /r/Leaves subreddit." />
+<p>Flutter was chosen because, as mentioned before, it's a framework that can transpile code into code that can be run on both iOS and Android devices, 
+allowing people with any device to use it. Reddit is already designed for users to communicate, has a free API that I could leverage, and I wouldn't have to manage 
+another system and deal with user account issues. To achieve this, we used the dart package <a href="https://pub.dev/packages/draw">Draw</a> or Dart Reddit API Wrapper to 
+interact with the subreddit. Data is stored in a local SQlite database, using a custom schema. </p>
+<p>The journaling feature can either save the data to local memory or to post to the <a href="https://reddit.com/r/leaves">/r/Leaves</a> subreddit, provided they already have
+an account.</p>
+<h2 id="thoughts">Thoughts</h2>
+<p>This was my first project where I felt satisfied at the completion of the course. Flutter made this application very easy to throw together, and working with
+a team that was motivated and had a vested interest in this project made this an incredibly enjoyable experience. Technology wise, the features are in place
+however they're not the prettiest and the database is quite frankly a mess. I designed the database, but looking back I really didn't know what I was doing. 
+I plan on reviving this project and pushing forward with it now that I have the time, the application is in dire need of a facelift and some stylistic 
+standardization, as well as a complete database overhaul.</p>
+<p>This application was my first mobile application that I've ever worked on, and I plan on seeing it to the end and get it published to both iOS and Android app stores.</p>
+
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  
+
+
+
+  
+  <footer id="footer">
+    <div class="content has-text-centered">
+      
+<div>
+
+  
+
+  
+
+  
+  <a href="https://www.linkedin.com/in/mw-kennedy" target="_blank" title="Linkedin">
+    <span class="icon" title="LinkedIn">
+      <i class="fab fa-linkedin fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+  <a href="https://github.com/xNS5" target="_blank" title="Github">
+    <span class="icon" title="GitHub">
+      <i class="fab fa-github fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+  <a href="mailto:michael@michaelkennedy.dev" target="_blank" title="Email">
+    <span class="icon" title="Email">
+      <i class="far fa-envelope fa-lg"></i>
+    </span>
+  </a>
+  
+  
+  
+
+  
+</div>
+
+    </div>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2023-2024</li>
+    </ul>
+  </footer>
+  
+</body>
+
+<script>
+  const lightSchemeIcon = document.getElementById('light-scheme-icon');
+  const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+
+  if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+    darkSchemeIcon.remove();
+    document.head.append(lightSchemeIcon);
+  } else {
+    lightSchemeIcon.remove();
+    document.head.append(darkSchemeIcon);
+  }
+
+  function htmlDecode(input){
+    let doc = new DOMParser().parseFromString(input, 'text/html');
+    return doc.documentElement.textContent;
+  }
+</script>
+
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/browser.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/breakpoints.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/main.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/util.js'></script>
+<script type="text/javascript" src="https://www.michaelkennedy.dev/js/site.js"></script>
+
+</html>

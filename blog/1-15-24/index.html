@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css -->
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="#ffffff" name="theme-color" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+  <link id="dark-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-black.ico'>
+  <link id="light-scheme-icon" rel="shortcut icon" type="image/jpg" href='https://www.michaelkennedy.dev/icons/code-white.ico'>
+  <link rel="stylesheet" href="/main.css">
+
+  
+  
+  <title>
+    
+Michael Kennedy | Laid off - Day 9 (ish)
+
+  </title>
+</head>
+
+<body class="has-background-white is-preload">
+  <nav aria-label="section navigation" class="navbar" role="navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger burger" data-target="navMenu" role="button">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end has-text-centered">
+          
+            
+              
+              <a class="navbar-item" href="&#x2F;">
+                Home
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;projects">
+                Projects
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;blog">
+                Blog
+              </a>
+              
+              <a class="navbar-item" href="&#x2F;resume">
+                Resume
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;github.com&#x2F;xNS5">
+                Github
+              </a>
+              
+              <a class="navbar-item" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;mw-kennedy&#x2F;">
+                Linkedin
+              </a>
+              
+              <a class="navbar-item" href="mailto:michael@michaelkennedy.dev?subject=Website%20Contact%20Inquiry ">
+                Contact
+              </a>
+              
+            
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  
+
+  
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <article>
+          <h1 class="title">
+            <strong>Laid off - Day 9 (ish)</strong>
+            
+          </h1>
+          
+            <p class="subtitle">I&#x27;m trying to stay sane -- but DNS is *really* testing me</p>
+          
+          <div class="columns is-multiline is-gapless">
+            <div class="column">
+              
+<span class="icon-text has-text-grey">
+  <span class="page_timestamp">Published on <time  datetime="2024-01-15">January 15, 2024</time></span>
+</span>
+
+              </div>
+            </div>
+            <div class="project-content">
+              <hr />
+<h2 id="why-proxies">Why proxies?</h2>
+<p>I can remember IP addresses just fine, but if I'm hosting multiple services on a single VM (which therefore will have the same IP address, but will utilize different ports) it's going to be more challenging -- especially considering there are over a thousand available ports available to use on a given client. That's where the reverse proxy comes in. In most cases that I've seen, in the context of self hosting, reverse proxies are used to connect the internet to services on one's home network. The tutorials require purchasing a domain, setting up a dynamic DNS, opening up ports on my firewall to the big bad internet, blah blah blah. I don't want any of that. All of the stuff on my network is going to stay nice and cozy behind my firewall.</p>
+<h2 id="nginx-proxy-manager-npm-vs-traefik">Nginx Proxy Manager (NPM) vs Traefik</h2>
+<p>I ended up using Nginx Proxy Manager after trying Traefik. While the latter has good reviews, changing configurations is a bit...clunky. I like that NPM because it's an all-in-one interface. I can add, modify, and test things at will without having to restart the service or the VM. With Traefik, I have to go into a dedicated dynamic route configuration file and make tweaks. I don't really have a problem with that, however if one thing was misconfigured it would throw off <strong>all</strong> of the routes. On top of that, it isn't super verbose when something goes wonky. </p>
+<h2 id="the-solution">The Solution</h2>
+<p>The solution was simple, but figuring out where the reverse proxy goes in my network setup wasn't the easiest to figure out. If the client makes a request, does it go to the router, DNS server, then the reverse proxy? Or would it go direct to the reverse proxy from the router?</p>
+<p>All I needed to do was create DNS records, add a few CNAME records, but the step I was missing was flushing my DNS cache on my computer. I wasn't able to hit the URLs I had built out, and that's because I forgot one aspect of DNS that I learned about in college: Time To Live, or TTL. I was setting records correctly, my computer simply wasn't picking them up before I got frustrated and changed the records again. This just reminds me that even if it isn't DNS, it's still DNS.</p>
+<p>Next up, monitoring! </p>
+
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  
+
+
+
+  
+  <footer id="footer">
+    <div class="content has-text-centered">
+      
+<div>
+
+  
+
+  
+
+  
+  <a href="https://www.linkedin.com/in/mw-kennedy" target="_blank" title="Linkedin">
+    <span class="icon" title="LinkedIn">
+      <i class="fab fa-linkedin fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+  <a href="https://github.com/xNS5" target="_blank" title="Github">
+    <span class="icon" title="GitHub">
+      <i class="fab fa-github fa-lg"></i>
+    </span>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+  <a href="mailto:michael@michaelkennedy.dev" target="_blank" title="Email">
+    <span class="icon" title="Email">
+      <i class="far fa-envelope fa-lg"></i>
+    </span>
+  </a>
+  
+  
+  
+
+  
+</div>
+
+    </div>
+    <ul class="copyright">
+      <li>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></li>
+      <li>Michael Kennedy © 2023-2024</li>
+    </ul>
+  </footer>
+  
+</body>
+
+<script>
+  const lightSchemeIcon = document.getElementById('light-scheme-icon');
+  const darkSchemeIcon = document.getElementById('dark-scheme-icon');
+
+  if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+    darkSchemeIcon.remove();
+    document.head.append(lightSchemeIcon);
+  } else {
+    lightSchemeIcon.remove();
+    document.head.append(darkSchemeIcon);
+  }
+
+  function htmlDecode(input){
+    let doc = new DOMParser().parseFromString(input, 'text/html');
+    return doc.documentElement.textContent;
+  }
+</script>
+
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/jquery.scrolly.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/browser.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/breakpoints.min.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/main.js'></script>
+<script type="text/javascript" src='https://www.michaelkennedy.dev/js/util.js'></script>
+<script type="text/javascript" src="https://www.michaelkennedy.dev/js/site.js"></script>
+
+</html>
