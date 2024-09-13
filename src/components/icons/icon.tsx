@@ -34,7 +34,7 @@ export default function Icon(props: IconProps){
             return <FontAwesomeIcon title="X icon" icon={getIcon("fas-xmark", "-")} />;
         }
         return (
-            <FontAwesomeIcon icon={DynamicIcon} style={{height: "inherit"}} className={`rounded my-2 ${props?.className}`} aria-hidden={props.ariahidden} tabIndex={props.tabIndex} title={props.altText ?? ""} />
+            <FontAwesomeIcon icon={DynamicIcon} style={{height: "inherit"}} className={`rounded my-2 ${props?.className}`} aria-hidden={props.ariahidden} tabIndex={props.tabIndex} title={props.altText ?? ""}/>
         )
     }
 }

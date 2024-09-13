@@ -3,7 +3,7 @@ export type Config = {
       name: string;
       title?: string;
       description?: string;
-      text?: Text[];
+      [key: string] : any;
     } | any
   };
   
@@ -11,5 +11,22 @@ export type Config = {
     title: string,
     text: string
   }
+
+export type SectionType = {
+  image?: string,
+  title: string,
+  text: string,
+  links: Link[]
+}
+
+export type Link = {
+  name: string,
+  url: string,
+  icon?: string,
+  type?: string,
+  target?: string,
+  children?: Link[],
+  className?: string
+}
   
 export const development: boolean =  !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
