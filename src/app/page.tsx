@@ -9,7 +9,7 @@ import type { Link as LinkType } from "@/lib/config-provider";
 import Icon from "@/components/icons/icon";
 
 export default async function Home() {
-  const config: Config = await getDocument<Config>("config", "michaelkennedy");
+  const {config, footer, navbar}: Config = await getDocument<Config>("config", "config");
   const { sections }: { sections: SectionType[] } = config.pages.home;
   const sectionOneData = sections[0];
   const sectionTwoData = sections[1];

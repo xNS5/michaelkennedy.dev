@@ -20,13 +20,14 @@ export type SectionType = {
 }
 
 export type Link = {
-  name: string,
+  title: string,
   url: string,
   icon?: string,
   type?: string,
   target?: string,
   children?: Link[],
   className?: string
+  alt?: string
 }
   
 export const development: boolean =  !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
