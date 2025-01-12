@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Fragment } from "react";
 import type { Link as LinkType } from "@/lib/config-provider";
 import Icon from "@/components/icons/icon";
+import Article from "@/components/article/article";
 
 export default async function Home() {
   const {config, footer, navbar}: Config = await getDocument<Config>("config", "config");
@@ -17,7 +18,7 @@ export default async function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16  font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <article className="rounded-3xl shadow-xl border border-slate-200 px-10 w-50" style={{backgroundColor: "rgb(245, 243, 241)"}}>
+        <Article className="rounded-3xl shadow-xl border border-slate-200 px-10 w-50 bg-neutral-100">
           {/* Section One */}
           <section id="about" className="grid grid-cols-1 place-items-center p-10">
             <Image
@@ -43,7 +44,11 @@ export default async function Home() {
               <Text className="text-xl" text={sectionOneData.text} />
             </div>
           </section>
-        </article>
+          <section id="technologies">
+            <h2 className="font-medium">{sectionTwoData.title}</h2>
+            <Text className="text-xl" text={sectionTwoData.text}/>
+          </section>
+        </Article>
       </main>
     </div>
   );
