@@ -101,4 +101,11 @@ body {
     background-position: center;
     background-repeat: no-repeat;
   }
+
+  .hero {
+    background-image: url("../../public/images/hero_image.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }

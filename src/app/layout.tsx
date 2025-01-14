@@ -3,28 +3,23 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { getCollection, getDocument } from "@/db/db";
 import { Config } from "@/lib/config-provider";
-import backgroundImage from "../../public/images/asilomar.jpg";
+import React from "react";
+import Footer from "@/components/footer/footer";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+const soraRegular = localFont({
+  src: "./fonts/Sora-Regular.ttf",
+  variable: "--font-sora-regular",
   weight: "100 900",
 });
 
 export let metadata: Metadata;
 
 async function getMetadata(){
- const config: Config = await getDocument<Config>("config", "michaelkennedy");
+ const {config}: Config = await getDocument<Config>("config", "config");
 
  if(config){
   metadata = {
-    title: config.title,
+    title: config.name,
     description: config.description
    }
  }
@@ -36,12 +31,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   await getMetadata();
+  const {footer}: Config = await getDocument<Config>("config", "config");
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased asilomar`}
+        className={`${soraRegular.variable}`}
       >
-        {children}
+      <main className={`h-screen w-screen`}>
+
+          {children}
+      </main>
+      <Footer footer={footer}/>
       </body>
     </html>
   );

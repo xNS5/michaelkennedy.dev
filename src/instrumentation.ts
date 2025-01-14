@@ -1,9 +1,9 @@
-import type NodeCache from 'cacheable/node-cache';
+import {NodeCacheOptions} from '@cacheable/node-cache';
 
 export async function register() {
   if (process.env.NEXT_RUNTIME === 'nodejs') {
     const NodeCache = (await import('@cacheable/node-cache')).default;
-    const config: NodeCache.Options = {
+    const config: NodeCacheOptions = {
       stdTTL: process.env.NODE_ENV === 'production' ? 0 : 60,
     };
 
