@@ -1,4 +1,4 @@
-import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName, IconPrefix, findIconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -15,15 +15,14 @@ type IconProps = {
     className?: string,
     ariahidden?: boolean | true,
     altText?: string,
-    accessibilityProps?: {},
+    accessibilityProps?: NonNullable<unknown>,
     tabIndex?: number | -1
 }
 
 const getIcon = (type: string, delimiter: string) => {
     const index: number = type.indexOf("-");
     const nameArr: string[] = [type.slice(0, index), type.slice(index + delimiter.length)];
-    const temp = findIconDefinition({ prefix: nameArr[0] as IconPrefix, iconName: nameArr[1] as IconName });
-    return temp;
+    return findIconDefinition({ prefix: nameArr[0] as IconPrefix, iconName: nameArr[1] as IconName });
 }
 
 export default function Icon(props: IconProps){
@@ -34,7 +33,7 @@ export default function Icon(props: IconProps){
             return <FontAwesomeIcon title="X icon" icon={getIcon("fas-xmark", "-")} />;
         }
         return (
-            <FontAwesomeIcon icon={DynamicIcon} style={{height: "inherit"}} className={`rounded my-2 ${props?.className}`} aria-hidden={props.ariahidden} tabIndex={props.tabIndex} title={props.altText ?? ""}/>
+            <FontAwesomeIcon icon={DynamicIcon} style={{height: "inherit"}} className={`rounded my-2 ${props?.className ?? ""}`} aria-hidden={props.ariahidden} tabIndex={props.tabIndex} title={props.altText ?? ""}/>
         )
     }
 }

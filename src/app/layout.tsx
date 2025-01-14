@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { getCollection, getDocument } from "@/db/db";
+import { getDocument } from "@/db/db";
 import { Config } from "@/lib/config-provider";
 import React from "react";
 import Footer from "@/components/footer/footer";
@@ -19,7 +19,7 @@ async function getMetadata(){
 
  if(config){
   metadata = {
-    title: config.name,
+    title: config.title,
     description: config.description
    }
  }
@@ -36,10 +36,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${soraRegular.variable}`}
+        className={`${soraRegular.variable} asilomar`}
       >
-      <main className={`h-screen w-screen`}>
-
+      <main id="main-content">
           {children}
       </main>
       <Footer footer={footer}/>

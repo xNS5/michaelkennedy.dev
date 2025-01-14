@@ -24,6 +24,7 @@ export type Link = {
   url: string,
   icon?: string,
   type?: string,
+  color?: string,
   target?: string,
   children?: Link[],
   className?: string
