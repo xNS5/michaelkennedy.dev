@@ -18,9 +18,9 @@ h5 {
 
 section {
     border-radius: 0.5rem;
-    max-width: 2800px;
+    max-width: 1700px;
     min-width: 375px;
-    border: 2px solid black;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     p {
         font-size: 1.25rem;

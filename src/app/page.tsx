@@ -30,7 +30,7 @@ export default async function Home() {
                       id={"profile_picture"}
                       src={`/images/profile_picture.png`}
                       alt="A man with a beard wearing a red and black plaid shirt, red-tinted sunglasses, and a tan cap smiles outdoors on a sunny day, with blurred cars and buildings in the background."
-                      className="block rounded-3xl shadow-lg h-52 w-auto"
+                      className="block rounded-3xl shadow-lg h-96 w-auto"
                   />
                   <span className={`flex flex-row`}>
                       {sectionOneData.links && sectionOneData.links.map((link: LinkType, i: number) => (
