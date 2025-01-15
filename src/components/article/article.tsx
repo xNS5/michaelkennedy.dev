@@ -1,3 +1,4 @@
+import React from "react";
 
 
 export default function Article({children, className}: Readonly<{
@@ -5,7 +6,7 @@ export default function Article({children, className}: Readonly<{
     className?: string;
 }>){
     return (
-        <article className={`${className}`}>
+        <article className={`${className ?? ""}`}>
             {children}
         </article>
     )
