@@ -1,19 +1,67 @@
 h2 {
     border-bottom: 2px solid white;
-    margin: 1.25rem 0 1.25rem 0;
+    font-weight: bold;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+h3 {
+    text-decoration-line: underline;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
 }
 
 section {
-    margin: 1.25rem;
-    padding: 1.25rem;
     border-radius: 0.5rem;
+    max-width: 2800px;
+    min-width: 375px;
+    border: 2px solid black;
+
+    p {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+}
+section {
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    padding: 1rem;
 }
 
-p {
-    text-indent: 1.5rem;
+@media screen and (min-width: 768px){
+    section {
+        margin: 0.5rem 10rem 0.5rem 10rem;
+        padding: 1rem;
+    }
 }
+
+
+@media screen and (min-width: 1024px){
+    section {
+        margin: 0.5rem 20rem 0.5rem 20rem;
+        padding: 1rem;
+    }
+}
+
 
 a[href] {
     font-weight: bold;
     text-decoration: underline solid white;
+}
+
+.text-content {
+    text-indent: 1.5rem;
+    padding: 0 1.25rem 0 1.25rem;
+}
+
+.experience-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 6rem;
+    margin: 0.5rem 0 0.5rem 0;
 }

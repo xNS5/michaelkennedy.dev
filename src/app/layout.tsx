@@ -36,7 +36,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${soraRegular.variable} asilomar`}
+        className={`${soraRegular.variable}`}
       >
       <main id="main-content">
           {children}
