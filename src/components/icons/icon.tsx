@@ -12,7 +12,7 @@ library.add(fas, fab);
 
 type IconProps = {
     type: string,
-    className?: string,
+    class?: string,
     ariahidden?: boolean | true,
     altText?: string,
     accessibilityProps?: NonNullable<unknown>,
@@ -30,10 +30,10 @@ export default function Icon(props: IconProps){
         const DynamicIcon = getIcon(props.type, "-");
        
         if (DynamicIcon == null) {
-            return <FontAwesomeIcon title="X icon" icon={getIcon("fas-xmark", "-")} />;
+            return <FontAwesomeIcon title="X icon" icon={getIcon("fas-rectangle-xmark", "-")} />;
         }
         return (
-            <FontAwesomeIcon icon={DynamicIcon} style={{height: "inherit"}} className={`rounded my-2 ${props?.className ?? ""}`} aria-hidden={props.ariahidden} tabIndex={props.tabIndex} title={props.altText ?? ""}/>
+            <FontAwesomeIcon icon={DynamicIcon} style={{height: "inherit"}} className={`rounded my-2 ${props?.class ?? ""}`} aria-hidden={props.ariahidden} tabIndex={props.tabIndex} title={props.altText ?? ""}/>
         )
     }
 }

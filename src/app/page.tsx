@@ -5,7 +5,7 @@ import Link from "next/link";
 import Icon from "@/components/icons/icon";
 import Article from "@/components/article/article";
 import type { Link as LinkType } from "@/lib/config-provider";
-import type {Education, Project, Skill, Work} from "@/types/work";
+import type {Education, Project, Skill, Highlight, Work} from "@/types/work";
 
 import "./home.css"
 
@@ -22,7 +22,7 @@ export default async function Home() {
   return   (
       <Article>
           {/* Section One */}
-          <section id="about" className={"bg-white flex flex-col lg:flex-row justify-center items-center"}>
+          <section id="about" className={"bg-white flex flex-col xl:flex-row justify-center items-center"}>
               <div className={`flex flex-col justify-center items-center mx-5 my-10`}>
                   <img
                       id={"profile_picture"}
@@ -34,7 +34,8 @@ export default async function Home() {
                   <span className={`flex flex-row`}>
                       {sectionOneData.links && sectionOneData.links.map((link: LinkType, i: number) => (
                           <Link key={i} href={link.url} className="mx-5 w-10 h-auto" target={link.target}>
-                              <Icon type={link.icon ?? ""} altText={link.alt} className={`text-${link.color}`}/>
+                              <Icon type={link.icon ?? ""}
+                                    altText={link.alt} {...(link.color && {className: `text-${link.color}`})}/>
                               <p className={`hidden md:visible`}>{link.title}</p>
                           </Link>
                       ))}
@@ -53,11 +54,11 @@ export default async function Home() {
               </div>
               <div className={`flex flex-col 2xl:flex-row justify-center my-2`}>
                   <div className={`flex flex-col items-center mx-5`}>
-                      <h3>Work Experience</h3>
+                      <h3><b>Work Experience</b></h3>
                       <ol className={`first:mt-2 last:mb-2`}>
                           {work.map((w: Work, i: number) =>
                               (
-                                  <li key={i} >
+                                  <li key={i}>
                                       <span className={`experience-group`}>
                                           <span
                                               className={`flex flex-col items-start 2xl:flex-row 2xl:justify-between 2xl:space-x-10`}>
@@ -72,13 +73,13 @@ export default async function Home() {
                               )
                           )}
                       </ol>
-                    </div>
-                   <div className={`flex flex-col items-center mx-5`}>
-                      <h3>Education</h3>
+                  </div>
+                  <div className={`flex flex-col items-center mx-5`}>
+                      <h3><b>Education</b></h3>
                       <ol className={`first:mt-2 last:mb-2`}>
                           {education.map((edu: Education, i: number) =>
                               (
-                                  <li key={i} >
+                                  <li key={i}>
                                       <span className={`experience-group`}>
                                           <span
                                               className={`flex flex-col 2xl:flex-row 2xl:justify-between 2xl:space-x-60`}>
@@ -96,17 +97,54 @@ export default async function Home() {
                       </ol>
                   </div>
               </div>
-              {/*<div>*/}
-              {/*    <h3>Technologies</h3>*/}
-              {/*    <ol>*/}
-              {/*        {skills.map((skill: Skill, i: number) =>*/}
-              {/*            <li key={i}>*/}
-              {/*                <h5>{skill.name}</h5>*/}
-              {/*            </li>*/}
-              {/*        )}*/}
-              {/*    </ol>*/}
-              {/*</div>*/}
           </section>
+          {/*Section three*/}
+          <section id="technologies" className={`flex flex-col text-black bg-white`}>
+              <h2 className={`border-b-2 border-black my-2`}>Technologies</h2>
+              <ol>
+                  {
+                      skills.map((skill: Skill, i: number) =>
+                          <li key={i} className={`p-2 my-2`}>
+                              <h3><b>{skill.name}</b></h3>
+                              <ol className={`flex flex-col lg:flex-row flex-wrap justify-center`}>
+                                  {skill.highlights.map((highlight: Highlight, j: number) =>
+                                      <li key={j}
+                                          className={`flex flex-col justify-center items-center rounded-lg border-2 border-black shadow-lg p-5 m-2.5`}>
+                                          <div className={`min-w-16 w-10 h-auto`}><Icon type={highlight?.icon ?? ''}/>
+                                          </div>
+                                          <h5>{highlight.name}</h5>
+                                      </li>
+                                  )}
+                              </ol>
+                          </li>
+                      )
+                  }
+              </ol>
+          </section>
+          {/* Section four */}
+          <section id="Projects" className={`flex flex-col text-white bg-black bg-opacity-90`}>
+              <h2 className={`border-b-2 border-white my-2`}>Projects</h2>
+              <ol className={`flex flex-row`}>
+                  {
+                      projects.map((project: Project, i: number) =>
+                          <li key={i} className={`m-2 p-2 border-2 border-white rounded-lg`}>
+                              <h3><b>{project.name}</b></h3>
+                              <p>{project.description}</p>
+                              <ol className={`list-disc pl-5`}>
+                                  {
+                                      project.technologies.map((tech: string, j: number) =>
+                                          <li key={j}>
+                                              {tech}
+                                          </li>
+                                      )
+                                  }
+                              </ol>
+                          </li>
+                      )
+                  }
+              </ol>
+          </section>
+
       </Article>
   )
 }

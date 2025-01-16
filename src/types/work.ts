@@ -25,15 +25,16 @@ export type Education = {
 
 export type Skill = {
     name: string,
-    highlights: string[]
+    highlights: Highlight[]
 }
 
 export type Project = {
     name: string,
     technologies: string[],
+    description: string,
     startDate: string,
     endDate: string,
-    highlights: string[]
+    highlights: Highlight[]
 }
 
 export type Resume = {
@@ -48,4 +49,9 @@ export type Resume = {
     education: Education[],
     skills: Skill[],
     projects: Project[]
+}
+
+export type Highlight = {
+    name: string,
+    icon?: string
 }
