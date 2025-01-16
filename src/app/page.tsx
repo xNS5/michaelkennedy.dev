@@ -124,7 +124,7 @@ export default async function Home() {
           {/* Section four */}
           <section id="Projects" className={`flex flex-col text-white bg-black bg-opacity-90`}>
               <h2 className={`border-b-2 border-white my-2`}>Projects</h2>
-              <ol className={`flex flex-row`}>
+              <ol className={`flex flex-col lg:flex-row`}>
                   {
                       projects.map((project: Project, i: number) =>
                           <li key={i} className={`m-2 p-2 border-2 border-white rounded-lg`}>
