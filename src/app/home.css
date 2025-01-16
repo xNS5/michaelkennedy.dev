@@ -29,12 +29,17 @@ section {
     p {
         font-size: 1.25rem;
         line-height: 1.75rem;
+
+        a[href] {
+            font-weight: bold;
+            text-decoration: underline solid white;
+        }
     }
 }
 
 section {
     margin: 0.625rem;
-    padding: 1rem;
+    padding: 2rem !important;
 }
 
 @media screen and (min-width: 768px){
@@ -51,14 +56,9 @@ section {
     }
 }
 
-a[href] {
-    font-weight: bold;
-    text-decoration: underline solid white;
-}
-
 .text-content {
     text-indent: 1.5rem;
-    padding: 0 1.25rem 0 1.25rem;
+    padding: 1.25rem 0.625rem 1.25rem 0.625rem;
 }
 
 .experience-group {
@@ -71,4 +71,9 @@ a[href] {
         font-size: 1.125rem;
         line-height: 1.75rem;
     }
+}
+
+a[href]:hover{
+    color: #0284c7 !important;
+    text-decoration-line: underline;
 }

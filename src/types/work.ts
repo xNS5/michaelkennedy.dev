@@ -31,6 +31,7 @@ export type Skill = {
 export type Project = {
     name: string,
     technologies: string[],
+    url: string,
     description: string,
     startDate: string,
     endDate: string,
@@ -53,5 +54,6 @@ export type Resume = {
 
 export type Highlight = {
     name: string,
+    alt?: string,
     icon?: string
 }

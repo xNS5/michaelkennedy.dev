@@ -22,8 +22,8 @@ export default async function Home() {
   return   (
       <Article>
           {/* Section One */}
-          <section id="about" className={"bg-white flex flex-col xl:flex-row justify-center items-center"}>
-              <div className={`flex flex-col justify-center items-center mx-5 my-10`}>
+          <section id="about" className={"bg-neutral-200 flex flex-col xl:flex-row justify-center items-center"}>
+              <div className={`flex flex-col justify-center items-center m-5`}>
                   <img
                       id={"profile_picture"}
                       src={`/images/profile_picture.png`}
@@ -31,15 +31,17 @@ export default async function Home() {
                       className="block rounded-3xl shadow-lg h-92 w-96"
                       loading={"lazy"}
                   />
-                  <span className={`flex flex-row`}>
+                  <ol className={`flex flex-row space-x-10`}>
                       {sectionOneData.links && sectionOneData.links.map((link: LinkType, i: number) => (
-                          <Link key={i} href={link.url} className="mx-5 w-10 h-auto" target={link.target}>
-                              <Icon type={link.icon ?? ""}
-                                    altText={link.alt} {...(link.color && {className: `text-${link.color}`})}/>
-                              <p className={`hidden md:visible`}>{link.title}</p>
-                          </Link>
+                          <li key={i} className={`flex flex-col justify-center items-center text-center`}>
+                              <Link key={i} href={link.url} target={link.target}>
+                                  <span className={`${link.color ? 'text-' + link.color : ''} h-12 w-auto`}><Icon
+                                      type={link.icon ?? ""} altText={link?.alt ?? ''}/></span>
+                                  <p className={`invisible md:visible`}>{link.title}</p>
+                              </Link>
+                          </li>
                       ))}
-                </span>
+                  </ol>
               </div>
               <div className={`flex flex-col justify-center items-center max-w-[700px]`}>
                   <h1>{sectionOneData.title}</h1>
@@ -99,7 +101,7 @@ export default async function Home() {
               </div>
           </section>
           {/*Section three*/}
-          <section id="technologies" className={`flex flex-col text-black bg-white`}>
+          <section id="technologies" className={`flex flex-col text-black bg-neutral-200`}>
               <h2 className={`border-b-2 border-black my-2`}>Technologies</h2>
               <ol>
                   {
@@ -109,8 +111,9 @@ export default async function Home() {
                               <ol className={`flex flex-col lg:flex-row flex-wrap justify-center`}>
                                   {skill.highlights.map((highlight: Highlight, j: number) =>
                                       <li key={j}
-                                          className={`flex flex-col justify-center items-center rounded-lg border-2 border-black shadow-lg p-5 m-2.5`}>
-                                          <div className={`min-w-16 w-10 h-auto`}><Icon type={highlight?.icon ?? ''}/>
+                                          className={`flex flex-col justify-center items-center rounded-lg shadow-lg p-5 m-2.5 bg-gray-400`}>
+                                          <div className={`min-w-16 w-10 h-auto`}><Icon type={highlight?.icon ?? ''}
+                                                                                        altText={highlight.alt}/>
                                           </div>
                                           <h5>{highlight.name}</h5>
                                       </li>
@@ -122,29 +125,34 @@ export default async function Home() {
               </ol>
           </section>
           {/* Section four */}
-          <section id="Projects" className={`flex flex-col text-white bg-black bg-opacity-90`}>
-              <h2 className={`border-b-2 border-white my-2`}>Projects</h2>
+          <section id="projects" className={`flex flex-col bg-black bg-opacity-90`}>
+              <h2 className={`border-b-2 border-white text-white my-2`}>Projects</h2>
               <ol className={`flex flex-col lg:flex-row`}>
                   {
                       projects.map((project: Project, i: number) =>
-                          <li key={i} className={`m-2 p-2 border-2 border-white rounded-lg`}>
+                          <li key={i} className={`flex flex-col m-2 p-5 bg-gray-400 rounded-lg min-w-[225px]`}>
                               <h3><b>{project.name}</b></h3>
-                              <p>{project.description}</p>
-                              <ol className={`list-disc pl-5`}>
+                              <p className={`my-2`}>{project.description}</p>
+                              <ol className={`list-disc pl-5 my-2`}>
                                   {
                                       project.technologies.map((tech: string, j: number) =>
                                           <li key={j}>
-                                              {tech}
+                                              <p>{tech}</p>
                                           </li>
                                       )
                                   }
                               </ol>
+                              {project.url && <div className={`flex flex-row justify-center items-center`}>
+                              <span
+                                  className={`text-center border rounded-lg shadow-lg text-black font-bold my-5 p-2 border-black hover:border-sky-600 hover:text-sky-600 hover:border-2 bg-neutral-200 max-w-[200px] hover:shadow-xl`}>
+                                  <Link href={project.url} target={"_blank"}>Project Repository</Link>
+                              </span>
+                              </div>}
                           </li>
                       )
                   }
               </ol>
           </section>
-
       </Article>
   )
 }

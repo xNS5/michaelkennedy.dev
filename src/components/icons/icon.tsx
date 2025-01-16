@@ -3,16 +3,17 @@ import { IconName, IconPrefix, findIconDefinition } from '@fortawesome/fontaweso
 
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 import { library, config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 config.autoAddCss = false
 
-library.add(fas, fab);
+library.add(fas, fab, far);
 
 type IconProps = {
     type: string,
-    class?: string,
+    className?: string,
     ariahidden?: boolean | true,
     altText?: string,
     accessibilityProps?: NonNullable<unknown>,
@@ -33,7 +34,7 @@ export default function Icon(props: IconProps){
             return <FontAwesomeIcon title="X icon" icon={getIcon("fas-rectangle-xmark", "-")} />;
         }
         return (
-            <FontAwesomeIcon icon={DynamicIcon} style={{height: "inherit"}} className={`rounded my-2 ${props?.class ?? ""}`} aria-hidden={props.ariahidden} tabIndex={props.tabIndex} title={props.altText ?? ""}/>
+            <FontAwesomeIcon icon={DynamicIcon} style={{height: "inherit"}} className={`rounded my-2 ${props?.className ?? ""}`} aria-hidden={props.ariahidden} tabIndex={props.tabIndex} title={props.altText ?? ""}/>
         )
     }
 }
