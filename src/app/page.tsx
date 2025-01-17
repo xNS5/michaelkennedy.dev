@@ -9,12 +9,9 @@ import type {Education, Project, Skill, Highlight, Work} from "@/types/work";
 
 import "./home.css"
 
-const prod_url = "https://raw.githubusercontent.com/xNS5/resume/refs/heads/prod/resume.json";
-const dev_url = "https://raw.githubusercontent.com/xNS5/resume/refs/heads/development/resume.json";
-
 export default async function Home() {
   const {config}: Config = await getDocument<Config>("config", "config");
-  const {education, work, skills, projects} = await (await fetch(dev_url)).json();
+  const {education, work, skills, projects} = await (await fetch(`${process.env.NEXT_PUBLIC_DEV_RESUME_URL}`)).json();
   const { sections }: { sections: SectionType[] } = config.pages.home;
   const sectionOneData = sections[0];
   const sectionTwoData = sections[1];
@@ -31,11 +28,11 @@ export default async function Home() {
                       className="block rounded-3xl shadow-lg h-92 w-96"
                       loading={"lazy"}
                   />
-                  <ol className={`flex flex-row justify-center items-center space-x-5 lg:space-x-10 my-2`}>
+                  <ol className={`flex flex-row justify-center items-center space-x-4 lg:space-x-10 my-4`}>
                       {sectionOneData.links && sectionOneData.links.map((link: LinkType, i: number) => (
                           <li key={i} className={`flex flex-col justify-center items-center text-center`}>
                               <Link key={i} href={link.url} target={link.target}>
-                                  <span className={`${link.color ? 'text-' + link.color : ''} h-12 w-auto`}>
+                                  <span className={`h-10 w-auto`}>
                                       <Icon type={link.icon ?? ""} altText={link?.alt ?? ''}/></span>
                                   <p className={`invisible lg:visible`}>{link.title}</p>
                               </Link>

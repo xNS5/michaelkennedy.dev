@@ -40,7 +40,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body
+    <body
         className={`${soraRegular.variable} asilomar`}
       >
       <header>
