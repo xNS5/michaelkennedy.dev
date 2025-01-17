@@ -36,7 +36,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   await getMetadata();
-  const {footer}: Config = await getDocument<Config>("config", "config");
 
   return (
     <html lang="en">
@@ -51,7 +50,7 @@ export default async function RootLayout({
               {children}
           </Suspense>
       </main>
-      <Footer footer={footer}/>
+      <Footer/>
       </body>
     </html>
   );
