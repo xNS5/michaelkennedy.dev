@@ -31,13 +31,13 @@ export default async function Home() {
                       className="block rounded-3xl shadow-lg h-92 w-96"
                       loading={"lazy"}
                   />
-                  <ol className={`flex flex-row space-x-10`}>
+                  <ol className={`flex flex-row justify-center items-center space-x-5 lg:space-x-10 my-2`}>
                       {sectionOneData.links && sectionOneData.links.map((link: LinkType, i: number) => (
                           <li key={i} className={`flex flex-col justify-center items-center text-center`}>
                               <Link key={i} href={link.url} target={link.target}>
-                                  <span className={`${link.color ? 'text-' + link.color : ''} h-12 w-auto`}><Icon
-                                      type={link.icon ?? ""} altText={link?.alt ?? ''}/></span>
-                                  <p className={`invisible md:visible`}>{link.title}</p>
+                                  <span className={`${link.color ? 'text-' + link.color : ''} h-12 w-auto`}>
+                                      <Icon type={link.icon ?? ""} altText={link?.alt ?? ''}/></span>
+                                  <p className={`invisible lg:visible`}>{link.title}</p>
                               </Link>
                           </li>
                       ))}

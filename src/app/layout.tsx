@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
 import { getDocument } from "@/db/db";
 import { Config } from "@/lib/config-provider";
 import React from "react";
 import Footer from "@/components/footer/footer";
+import Navbar from "@/components/navbar/navbar";
+import {Suspense} from "react";
+import Loading from "@/app/loading";
+
+import "./globals.css";
+
 
 const soraRegular = localFont({
   src: "./fonts/Sora-Regular.ttf",
@@ -38,8 +43,13 @@ export default async function RootLayout({
       <body
         className={`${soraRegular.variable} asilomar`}
       >
+      <header>
+          <Navbar/>
+      </header>
       <main id="main-content">
-          {children}
+          <Suspense fallback={<Loading/>}>
+              {children}
+          </Suspense>
       </main>
       <Footer footer={footer}/>
       </body>
