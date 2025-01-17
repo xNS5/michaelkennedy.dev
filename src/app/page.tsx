@@ -28,14 +28,16 @@ export default async function Home() {
                       className="block rounded-3xl shadow-lg h-92 w-96"
                       loading={"lazy"}
                   />
-                  <ol className={`flex flex-row justify-center items-center space-x-4 lg:space-x-10 my-4`}>
+                  <ol className={`flex flex-row justify-center items-center space-x-4 lg:space-x-10 my-2`}>
                       {sectionOneData.links && sectionOneData.links.map((link: LinkType, i: number) => (
-                          <li key={i} className={`flex flex-col justify-center items-center text-center`}>
-                              <Link key={i} href={link.url} target={link.target}>
-                                  <span className={`h-10 w-auto`}>
-                                      <Icon type={link.icon ?? ""} altText={link?.alt ?? ''}/></span>
-                                  <p className={`invisible lg:visible`}>{link.title}</p>
+                          <li key={i} >
+                              <Link key={i} href={link.url} target={link.target} className={`flex flex-col justify-center items-center text-center`}>
+                                  <span className={`h-12 my-4 mx-2 w-auto`} aria-hidden={true}>
+                                      <Icon type={link.icon ?? ""} />
+                                    </span>
+                                    <label>{link.title}</label>
                               </Link>
+                            
                           </li>
                       ))}
                   </ol>
@@ -109,10 +111,11 @@ export default async function Home() {
                                   {skill.highlights.map((highlight: Highlight, j: number) =>
                                       <li key={j}
                                           className={`flex flex-col justify-center items-center rounded-lg shadow-lg p-5 m-2.5 bg-gray-400`}>
-                                          <div className={`min-w-16 w-10 h-auto`}><Icon type={highlight?.icon ?? ''}
+                                          <div className={`min-w-16 w-10 h-auto`} aria-hidden={true}>
+                                            <Icon type={highlight?.icon ?? ''}
                                                                                         altText={highlight.alt}/>
                                           </div>
-                                          <h5>{highlight.name}</h5>
+                                          <p>{highlight.name}</p>
                                       </li>
                                   )}
                               </ol>
