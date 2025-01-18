@@ -26,7 +26,7 @@ export default function Navbar(){
         >
             { isNotHome &&
                 <span
-                    className={`flex flex-row justify-center items-center bg-white rounded-xl p-2 m-2 ${getLoadingClass(isLoading)} shadow-lg`}
+                    className={`flex flex-row justify-center items-center bg-white rounded-xl p-2 m-2 ${getLoadingClass(isLoading)} shadow`}
                 >
                         <Link
                             href={"/"}

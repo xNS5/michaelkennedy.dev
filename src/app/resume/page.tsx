@@ -3,6 +3,7 @@ import Loading from "@/app/loading";
 import {getDocument} from "@/db/db";
 import parse from "html-react-parser/lib/index";
 import type { Config } from '@/lib/config-provider';
+import Icon from "@/components/icons/icon";
 
 export default async function Page(){
     const {config: {pages: { resume }}} = await getDocument<Config>("config", "config");
@@ -12,7 +13,11 @@ export default async function Page(){
 
     return(
         <Suspense fallback={<Loading/>}>
-            <a href={'/api/download/'} className={`font-bold text-lg rounded-xl bg-white p-2 m-2 hover:bg-sky-600 hover:text-white shadow-lg`}>Download </a>
+            <a href={'/api/download/'} className={`flex flex-row justify-center items-center font-bold text-lg rounded-xl bg-white p-2 m-4 hover:bg-sky-600 hover:text-white shadow-lg`}>
+                <span className={`flex flex-col justify-center h-5 w-auto mr-1`}>
+                    <Icon type={`far-circle-down`}/>
+                </span>
+                Download</a>
             <div className={`bg-white my-2 p-10 mx-10 lg:max-w-[1200px] text-lg`}>
                 <style>
                     {resumeStylesheet}
