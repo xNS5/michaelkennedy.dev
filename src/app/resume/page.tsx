@@ -5,6 +5,13 @@ import parse from "html-react-parser/lib/index";
 import type { Config } from '@/lib/config-provider';
 import Icon from "@/components/icons/icon";
 
+export async function generateMetadata() {
+    const {config: {pages: { resume }}} = await getDocument<Config>("config", "config");
+    return {
+        title: resume.title
+    }
+}
+
 export default async function Page(){
     const {config: {pages: { resume }}} = await getDocument<Config>("config", "config");
     const { resume_html_url, resume_html_stylesheet_url} = resume;

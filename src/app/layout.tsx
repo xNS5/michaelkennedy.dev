@@ -20,12 +20,12 @@ const soraRegular = localFont({
 export let metadata: Metadata;
 
 async function getMetadata(){
- const {config}: Config = await getDocument<Config>("config", "config");
+ const config: Config = await getDocument<Config>("config", "config");
 
  if(config){
   metadata = {
-    title: config.title,
-    description: config.description
+    title: config.metadata.title,
+    description: config.metadata.description
    }
  }
 }
