@@ -7,17 +7,20 @@ import Article from "@/components/article/article";
 import type { Link as LinkType } from "@/lib/config-provider";
 import type {Education, Project, Skill, Highlight, Work} from "@/types/work";
 
-import "./home.css"
+import "./home.css";
+
 
 export default async function Home() {
-  const {config}: Config = await getDocument<Config>("config", "config");
-  const {education, work, skills, projects} = await (await fetch(`${process.env.NEXT_PUBLIC_DEV_RESUME_URL}`)).json();
-  const { sections }: { sections: SectionType[] } = config.pages.home;
+
+  const {config: {pages}}: Config = await getDocument<Config>("config", "config");
+  const {home, resume} = pages;
+  const {education, work, skills, projects} = await (await fetch(`${resume.resume_json_url}`)).json();
+  const { sections }: { sections: SectionType[] } = home;
   const sectionOneData = sections[0];
   const sectionTwoData = sections[1];
 
   return   (
-      <Article>
+      <Article id={"home"}>
           {/* Section One */}
           <section id="about" className={"bg-neutral-200 flex flex-col xl:flex-row justify-center items-center"}>
               <div className={`flex flex-col justify-center items-center m-5`}>
