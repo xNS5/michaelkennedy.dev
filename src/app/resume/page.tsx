@@ -1,9 +1,9 @@
-import {Suspense} from "react";
+import {ReactElement, ReactNode, Suspense} from "react";
 import Loading from "@/app/loading";
 import {getDocument} from "@/db/db";
 import parse from "html-react-parser/lib/index";
-import type { Config } from '@/lib/config-provider';
 import Icon from "@/components/icons/icon";
+import type { Config } from '@/lib/config-provider';
 
 export async function generateMetadata() {
     const {config: {pages: { resume }}} = await getDocument<Config>("config", "config");
@@ -15,8 +15,8 @@ export async function generateMetadata() {
 export default async function Page(){
     const {config: {pages: { resume }}} = await getDocument<Config>("config", "config");
     const { resume_html_url, resume_html_stylesheet_url} = resume;
-    let resume_html: any = parse(await( await fetch(resume_html_url)).text());
-    let resumeStylesheet = await ( await fetch(resume_html_stylesheet_url)).text();
+    const resume_html = parse(await( await fetch(resume_html_url)).text());
+    const resumeStylesheet = await ( await fetch(resume_html_stylesheet_url)).text();
 
     return(
         <Suspense fallback={<Loading/>}>
@@ -29,7 +29,7 @@ export default async function Page(){
                 <style>
                     {resumeStylesheet}
                 </style>
-                {...resume_html[2].props.children[1].props.children}
+                {...(resume_html as ReactElement[])[2].props.children[1].props.children}
             </div>
         </Suspense>
     )
