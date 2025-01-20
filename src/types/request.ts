@@ -10,6 +10,6 @@ export type RequestType = {
 }
 
 export type ResponseType = {
-    collection?: [],
-    document?: {}
+    collection?: object[],
+    document?: object
 } 

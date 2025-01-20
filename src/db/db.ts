@@ -1,6 +1,6 @@
 import { firestoreGetCollection, firestoreGetDocument } from "./firebase";
 import { mongoGetCollection, mongoGetDocument } from "./mongo";
-import type { RequestType } from "./requesttype";
+import type { RequestType } from "../types/request";
 
 export enum DB_ENVS {
   LOCAL = "local",

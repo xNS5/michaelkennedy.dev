@@ -1,18 +1,6 @@
 import {getDocument} from "@/db/db"
 import { headers } from 'next/headers';
-
-type Config = {
-    [key: string]: {
-        name: string;
-        aria_announcement?:string;
-        title?: string;
-        description?: string;
-        text?: Text[];
-        robots?: {
-            [key: string]: any
-        }
-    } | any
-};
+import  {Config} from "@/types/config";
 
 export default async function robots(){
     const { metadata } = await getDocument<Config>("config", "config");

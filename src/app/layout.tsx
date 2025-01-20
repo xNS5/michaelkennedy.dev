@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { getDocument } from "@/db/db";
-import { Config } from "@/lib/config-provider";
+import { Config } from "@/types/config";
 import React from "react";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";

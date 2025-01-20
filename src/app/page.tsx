@@ -1,10 +1,10 @@
 import { getDocument } from "@/db/db";
 import Text from "@/components/text/text";
-import { Config, SectionType } from "@/lib/config-provider";
+import { Config, SectionType } from "@/types/config";
 import Link from "next/link";
 import Icon from "@/components/icons/icon";
 import Article from "@/components/article/article";
-import type { Link as LinkType } from "@/lib/config-provider";
+import type { Link as LinkType } from "@/types/config";
 import type {Education, Project, Skill, Highlight, Work} from "@/types/work";
 
 import "./home.css";
