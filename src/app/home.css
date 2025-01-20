@@ -1,0 +1,83 @@
+#home {
+
+    article {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+
+    h3 {
+        text-decoration-line: underline;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    h5 {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+
+    section {
+        border-radius: 0.5rem;
+        max-width: 1700px;
+        min-width: 375px;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        p {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+
+            a[href] {
+                font-weight: bold;
+                text-decoration: underline solid white;
+            }
+        }
+    }
+
+    section {
+        margin: 0.625rem;
+        padding: 2rem !important;
+    }
+
+    @media screen and (min-width: 768px){
+        section {
+            margin: 0.5rem 5rem 0.5rem 5rem;
+            padding: 1rem;
+        }
+    }
+
+    @media screen and (max-width: 1024px){
+        section {
+            margin: 0.5rem 10rem 0.5rem 10rem;
+            padding: 2rem;
+        }
+    }
+
+    .text-content {
+        text-indent: 1.5rem;
+        padding: 1.25rem 0.625rem 1.25rem 0.625rem;
+    }
+
+    .experience-group {
+        display: flex;
+        flex-direction: column;
+        margin: 0.5rem 0 0.5rem 0;
+
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+    }
+
+    a[href]:hover{
+        color: #0284c7 !important;
+        text-decoration-line: underline;
+    }
+
+}
