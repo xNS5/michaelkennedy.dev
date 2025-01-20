@@ -3,7 +3,6 @@ on:
   pull_request:
     branches:
       - main
-      - development
     types: [closed]
   workflow_dispatch:
 
@@ -60,4 +59,3 @@ jobs:
           --auth ${{ secrets.NETLIFY_DEPLOY_KEY }} \
           --message "${{ github.event.pull_request.title }}" \
           --prod
-
