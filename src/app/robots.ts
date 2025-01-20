@@ -1,10 +1,9 @@
 import {getDocument} from "@/db/db"
 import { headers } from 'next/headers';
-import  {Config} from "@/types/config";
+import  { Config } from "@/types/config";
 
 export default async function robots(){
-    const { metadata } = await getDocument<Config>("config", "config");
-    const { robots } = metadata;
+    const { metadata: { robots } } = await getDocument<Config>("config", "config");
 
     if(!robots){
         console.error("Robots.txt data not found, check DB connection")

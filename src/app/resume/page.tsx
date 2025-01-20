@@ -3,18 +3,18 @@ import Loading from "@/app/loading";
 import {getDocument} from "@/db/db";
 import parse from "html-react-parser/lib/index";
 import Icon from "@/components/icons/icon";
-import type {Config } from '@/types/config';
+import type { Config } from '@/types/config';
 
 export async function generateMetadata() {
-    const {config: { pages: { resume } }}: Config = await getDocument<Config>("config", "config");
+    const { resume }: Config = await getDocument<Config>("config", "config");
     return {
         title: resume.title
     }
 }
 
 export default async function Page(){
-    const {config: {pages: { resume }}}: Config = await getDocument<Config>("config", "config");
-    const { resume_html_url, resume_html_stylesheet_url} = resume;
+    const { resume } = await getDocument<Config>("config", "config");
+    const { resume_html_url, resume_html_stylesheet_url } = resume;
     const resume_html = parse(await( await fetch(resume_html_url)).text());
     const resumeStylesheet = await ( await fetch(resume_html_stylesheet_url)).text();
 

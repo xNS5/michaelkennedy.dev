@@ -1,6 +1,6 @@
 import { getDocument } from "@/db/db";
 import Text from "@/components/text/text";
-import { Config, SectionType } from "@/types/config";
+import {Config } from "@/types/config";
 import Link from "next/link";
 import Icon from "@/components/icons/icon";
 import Article from "@/components/article/article";
@@ -12,11 +12,9 @@ import Image from "next/image";
 
 
 export default async function Home() {
-
-  const {config: {pages}}: Config = await getDocument<Config>("config", "config");
-  const {home, resume} = pages;
+  const {home, resume} = await getDocument<Config>("config", "config");
   const {education, work, skills, projects} = await (await fetch(`${resume.resume_json_url}`)).json();
-  const { sections }: { sections: SectionType[] } = home;
+  const { sections } = home;
   const sectionOneData = sections[0];
   const sectionTwoData = sections[1];
 
@@ -44,7 +42,7 @@ export default async function Home() {
                                     </span>
                                     <label>{link.title}</label>
                               </Link>
-                            
+
                           </li>
                       ))}
                   </ol>

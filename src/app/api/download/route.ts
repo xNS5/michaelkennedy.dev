@@ -3,8 +3,7 @@ import { NextResponse } from "next/server";
 import type {Config} from "@/types/config";
 
 export async function GET() {
-    const { config: { pages }}: Config = await getDocument<Config>("config", "config");
-    const { resume_pdf_url } = pages?.resume;
+    const { resume: { resume_pdf_url} }: Config = await getDocument<Config>("config", "config");
     const diff = resume_pdf_url.length - 25;
 
     try {

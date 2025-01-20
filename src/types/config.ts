@@ -1,41 +1,56 @@
-export type Config = {
-  [key: string]: {
-    name: string;
-    aria_announcement?:string;
-    title?: string;
-    description?: string;
-    text?: Text[];
-    pages: {
-      resume: Resume,
-      home: Home
-    }
-    robots?: {
-      [key: string]: {
-        [key: string]: string[] | string
-      }
-    }
-  }
-};
-
+import {FooterItem} from "@/types/footer";
 
 export interface Page {
   title: string;
 }
 
 export interface Home extends Page {
-  sections: SectionType[]
+  sections: Section[]
 }
 
 export interface Resume extends Page {
   [key: string]: string
 }
+
+
+export type Config = {
+  resume: Resume,
+  home: Home,
+  footer: FooterItem[],
+  metadata: Metadata,
+  [key: symbol]: {
+    title: string;
+    description?: string;
+    text?: Text[];
+    robots?: {
+      [key: string]: {
+        [key: string]: string[] | string
+      }
+    },
+  }
+};
+
+type Metadata = {
+  robots: {
+    rules: RobotRules[],
+    [key: symbol]: string
+  }
+  title: string,
+  description: string
+}
+
+type RobotRules = {
+  "userAgent": string[],
+  allow?: string,
+  disallow?: string
+}
   
-  export type Text = {
+type Text = {
     title: string,
     text: string
   }
 
-export type SectionType = {
+type Section = {
   image?: string,
   title: string,
   text: string,
