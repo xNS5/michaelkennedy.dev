@@ -1,44 +1,48 @@
 import { getDocument } from "@/db/db";
 import Text from "@/components/text/text";
-import { Config, SectionType } from "@/lib/config-provider";
+import {Config } from "@/types/config";
 import Link from "next/link";
 import Icon from "@/components/icons/icon";
 import Article from "@/components/article/article";
-import type { Link as LinkType } from "@/lib/config-provider";
+import type { Link as LinkType } from "@/types/config";
 import type {Education, Project, Skill, Highlight, Work} from "@/types/work";
 
-import "./home.css"
+import "./home.css";
+import Image from "next/image";
 
-const prod_url = "https://raw.githubusercontent.com/xNS5/resume/refs/heads/prod/resume.json";
-const dev_url = "https://raw.githubusercontent.com/xNS5/resume/refs/heads/development/resume.json";
 
 export default async function Home() {
-  const {config}: Config = await getDocument<Config>("config", "config");
-  const {education, work, skills, projects} = await (await fetch(dev_url)).json();
-  const { sections }: { sections: SectionType[] } = config.pages.home;
+  const {home, resume} = await getDocument<Config>("config", "config");
+  const {education, work, skills, projects} = await (await fetch(`${resume.resume_json_url}`)).json();
+  const { sections } = home;
   const sectionOneData = sections[0];
   const sectionTwoData = sections[1];
 
   return   (
-      <Article>
+      <Article id={"home"}>
           {/* Section One */}
           <section id="about" className={"bg-neutral-200 flex flex-col xl:flex-row justify-center items-center"}>
               <div className={`flex flex-col justify-center items-center m-5`}>
-                  <img
+                  <Image
                       id={"profile_picture"}
                       src={`/images/profile_picture.png`}
                       alt="A man with a beard wearing a red and black plaid shirt, red-tinted sunglasses, and a tan cap smiles outdoors on a sunny day, with blurred cars and buildings in the background."
-                      className="block rounded-3xl shadow-lg h-92 w-96"
                       loading={"lazy"}
+                      className={`block rounded-3xl shadow-lg`}
+                      width={350}
+                      height={92}
                   />
-                  <ol className={`flex flex-row justify-center items-center space-x-5 lg:space-x-10 my-2`}>
+
+                  <ol className={`flex flex-row justify-center items-center space-x-4 lg:space-x-10 my-2`}>
                       {sectionOneData.links && sectionOneData.links.map((link: LinkType, i: number) => (
-                          <li key={i} className={`flex flex-col justify-center items-center text-center`}>
-                              <Link key={i} href={link.url} target={link.target}>
-                                  <span className={`${link.color ? 'text-' + link.color : ''} h-12 w-auto`}>
-                                      <Icon type={link.icon ?? ""} altText={link?.alt ?? ''}/></span>
-                                  <p className={`invisible lg:visible`}>{link.title}</p>
+                          <li key={i} >
+                              <Link key={i} href={link.url} target={link.target} className={`flex flex-col justify-center items-center text-center`}>
+                                  <span className={`h-12 my-4 mx-2 w-auto`} aria-hidden={true}>
+                                      <Icon type={link.icon ?? ""} />
+                                    </span>
+                                    <label>{link.title}</label>
                               </Link>
+
                           </li>
                       ))}
                   </ol>
@@ -112,10 +116,11 @@ export default async function Home() {
                                   {skill.highlights.map((highlight: Highlight, j: number) =>
                                       <li key={j}
                                           className={`flex flex-col justify-center items-center rounded-lg shadow-lg p-5 m-2.5 bg-gray-400`}>
-                                          <div className={`min-w-16 w-10 h-auto`}><Icon type={highlight?.icon ?? ''}
+                                          <div className={`min-w-16 w-10 h-auto`} aria-hidden={true}>
+                                            <Icon type={highlight?.icon ?? ''}
                                                                                         altText={highlight.alt}/>
                                           </div>
-                                          <h5>{highlight.name}</h5>
+                                          <p>{highlight.name}</p>
                                       </li>
                                   )}
                               </ol>
@@ -127,7 +132,7 @@ export default async function Home() {
           {/* Section four */}
           <section id="projects" className={`flex flex-col bg-black bg-opacity-90`}>
               <h2 className={`border-b-2 border-white text-white my-2`}>Projects</h2>
-              <ol className={`flex flex-col lg:flex-row`}>
+              <ol className={`flex flex-col xl:flex-row`}>
                   {
                       projects.map((project: Project, i: number) =>
                           <li key={i} className={`flex flex-col m-2 p-5 bg-gray-400 rounded-lg min-w-[225px]`}>

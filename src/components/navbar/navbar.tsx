@@ -17,7 +17,7 @@ export default function Navbar(){
         if(state){
             return 'bg-gray-200 text-gray-600 border-gray-200'
         }
-        return 'hover:border-2 hover:border-sky-600 hover:text-sky-600'
+        return 'hover:bg-sky-600 hover:text-white'
     }
 
     return (
@@ -26,7 +26,7 @@ export default function Navbar(){
         >
             { isNotHome &&
                 <span
-                    className={`flex flex-row justify-center items-center bg-white border-2 border-white rounded-xl px-5 p-3 m-2 ${getLoadingClass(isLoading)}`}
+                    className={`flex flex-row justify-center items-center bg-white rounded-xl p-2 m-2 ${getLoadingClass(isLoading)} shadow`}
                 >
                         <Link
                             href={"/"}
@@ -36,16 +36,16 @@ export default function Navbar(){
                             }}
                             className={`flex flex-row justify-center items-center ${isLoading && "pointer-events-none"}`}
                         >
-        <span className={`h-5 w-auto flex flex-col justify-center pr-2`}>
-            <Icon type={'fas-arrow-left'}/>
-        </span>
+                            <span className={`h-5 w-auto flex flex-col justify-center pr-2`}>
+                                <Icon type={'fas-arrow-left'}/>
+                            </span>
                             { isLoading &&
                                 (<span className={`absolute`}>
-            <Spinner/>
-        </span>)
+                                         <Spinner/>
+                                </span>)
                             }
-                            Home
-    </Link>
+                            <b>Home</b>
+                            </Link>
                 </span>
             }
         </nav>

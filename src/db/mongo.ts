@@ -1,4 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb";
+import { DB_NAME } from "./db";
 
 function getClient() {
     return new MongoClient(
@@ -10,7 +11,7 @@ export const mongoGetCollection = async <T>(collection: string) => {
     const client = getClient();
     try {
         await client.connect();
-        const db = client.db("michaelkennedy");
+        const db = client.db(DB_NAME);
         const collection_data = db.collection(collection);
         const data = await collection_data.find({}).toArray();
         return data as unknown as T;
@@ -25,7 +26,7 @@ export const mongoGetDocument = async <T>(collection: string, document_id: strin
     const client = getClient();
     try {
         await client.connect();
-        const db = client.db("michaelkennedy");
+        const db = client.db(DB_NAME);
         const collection_data = db.collection(collection);
         const data = await collection_data.findOne({_id: document_id as unknown as ObjectId });
         return data as unknown as T;

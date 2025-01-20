@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import type { Firestore } from "firebase/firestore";
 import type { FirebaseApp } from "firebase/app";
-import type { RequestType } from "./requesttype";
+import type { RequestType } from "../types/request";
 
 const firebaseConfig = () => {
   if(process.env.NEXT_PUBLIC_DB_ENV === "test"){

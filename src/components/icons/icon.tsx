@@ -23,7 +23,10 @@ type IconProps = {
 const getIcon = (type: string, delimiter: string) => {
     const index: number = type.indexOf("-");
     const nameArr: string[] = [type.slice(0, index), type.slice(index + delimiter.length)];
-    return findIconDefinition({ prefix: nameArr[0] as IconPrefix, iconName: nameArr[1] as IconName });
+
+   const temp =  findIconDefinition({ prefix: nameArr[0] as IconPrefix, iconName: nameArr[1] as IconName });
+   if(temp === undefined) console.log(temp);
+   return temp;
 }
 
 export default function Icon(props: IconProps){

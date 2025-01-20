@@ -7,5 +7,6 @@ export type FooterItem = {
     target?: string,
     text?: string,
     title?: string,
-    alt?: string
+    alt?: string,
+    row: number
 }

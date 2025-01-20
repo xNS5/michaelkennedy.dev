@@ -1,12 +1,13 @@
 import React from "react";
 
 
-export default function Article({children, className}: Readonly<{
+export default function Article({id, children, className}: Readonly<{
+    id?: string;
     children: React.ReactNode;
     className?: string;
 }>){
     return (
-        <article className={`${className ?? ""}`}>
+        <article {...(id ? {id: id} : undefined)} className={`${className ?? ""}`}>
             {children}
         </article>
     )
