@@ -23,14 +23,12 @@ export default async function Home() {
           {/* Section One */}
           <section id="about" className={"bg-neutral-200 flex flex-col xl:flex-row justify-center items-center"}>
               <div className={`flex flex-col justify-center items-center m-5`}>
-                  <Image
+                  <img
                       id={"profile_picture"}
                       src={`/images/profile_picture.png`}
                       alt="A man with a beard wearing a red and black plaid shirt, red-tinted sunglasses, and a tan cap smiles outdoors on a sunny day, with blurred cars and buildings in the background."
                       loading={"lazy"}
-                      className={`block rounded-3xl shadow-lg`}
-                      width={350}
-                      height={92}
+                      className={`block rounded-3xl shadow-lg h-[250px] md:h-[350px]`}
                   />
 
                   <ol className={`flex flex-row justify-center items-center space-x-4 lg:space-x-10 my-2`}>
