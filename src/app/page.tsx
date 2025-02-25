@@ -8,7 +8,6 @@ import type { Link as LinkType } from "@/types/config";
 import type {Education, Project, Skill, Highlight, Work} from "@/types/work";
 
 import "./home.css";
-import Image from "next/image";
 
 
 export default async function Home() {
