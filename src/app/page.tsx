@@ -13,7 +13,7 @@ import Image from "next/image";
 
 export default async function Home() {
   const {home, resume} = await getDocument<Config>("config", "config");
-  const {education, work, skills, projects} = await (await fetch(`${resume.resume_json_url}`)).json();
+  const {education, work, skills, projects} = await (await fetch(resume.resume_json_url, { next: { revalidate: 10} } )).json();
   const { sections } = home;
   const sectionOneData = sections[0];
   const sectionTwoData = sections[1];

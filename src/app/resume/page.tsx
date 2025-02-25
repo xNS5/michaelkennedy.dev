@@ -15,8 +15,8 @@ export async function generateMetadata() {
 export default async function Page(){
     const { resume } = await getDocument<Config>("config", "config");
     const { resume_html_url, resume_html_stylesheet_url } = resume;
-    const resume_html = parse(await( await fetch(resume_html_url)).text());
-    const resumeStylesheet = await ( await fetch(resume_html_stylesheet_url)).text();
+    const resume_html = parse(await( await fetch(resume_html_url, { next: { revalidate: 10}})).text());
+    const resumeStylesheet = await ( await fetch(resume_html_stylesheet_url, { next: { revalidate: 10} })).text();
 
     return(
         <Suspense fallback={<Loading/>}>
