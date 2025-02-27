@@ -22,7 +22,7 @@ export default function Navbar(){
 
     return (
         <nav
-        className={`flex flex-col justify-center items-start ${isNotHome && 'py-1'} bg-white bg-opacity-50`}
+        className={`flex flex-col justify-center items-start ${isNotHome && 'py-1'} bg-white bg-opacity-50 z-10`}
         >
             { isNotHome &&
                 <span
