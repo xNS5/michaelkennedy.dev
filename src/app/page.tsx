@@ -5,16 +5,16 @@ import Link from "next/link";
 import Icon from "@/components/icons/icon";
 import Article from "@/components/article/article";
 import type { Link as LinkType } from "@/types/config";
-import type {Education, Project, Skill, Highlight, Work} from "@/types/work";
+// import type {Education, Project, Skill, Highlight, Work} from "@/types/work";
 
 import "./home.css";
 
 export default async function Home() {
   const {home, resume} = await getDocument<Config>("config", "config");
-  const {education, work, skills, projects} = await (await fetch(resume.resume_json_url, { next: { revalidate: 10} } )).json();
+  // const {education, work, skills, projects} = await (await fetch(resume.resume_json_url, { next: { revalidate: 10} } )).json();
   const { sections } = home;
   const sectionOneData = sections[0];
-  const sectionTwoData = sections[1];
+  // const sectionTwoData = sections[1];
 
   return   (
       <Article id={"home"} className={`flex flex-col justify-center items-center mt-[12%]`}>
