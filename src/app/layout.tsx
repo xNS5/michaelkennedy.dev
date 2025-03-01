@@ -26,7 +26,11 @@ async function getMetadata(){
  if(config){
   metadata = {
     title: config.metadata.title,
-    description: config.metadata.description
+    description: config.metadata.description,
+      icons: [
+          { rel: "icon", url: "/code-black.ico", media: '(prefers-color-scheme: light)'},
+          { rel: "icon", url: "/code-white.ico", media: '(prefers-color-scheme: dark)'}
+      ]
    }
  }
 }
