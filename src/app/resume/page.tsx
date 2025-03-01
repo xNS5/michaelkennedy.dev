@@ -4,6 +4,7 @@ import {getDocument} from "@/db/db";
 import parse from "html-react-parser/lib/index";
 import Icon from "@/components/icons/icon";
 import type { Config } from '@/types/config';
+import Navbar from "@/components/navbar/navbar";
 
 export async function generateMetadata() {
     const { resume }: Config = await getDocument<Config>("config", "config");

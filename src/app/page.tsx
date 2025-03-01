@@ -18,11 +18,11 @@ export default async function Home() {
   const sectionTwoData = sections[1];
 
   return   (
-      <Article id={"home"}>
+      <Article id={"home"} className={`flex flex-col justify-center items-center mt-[12%]`}>
           {/* Section One */}
           <section id="about"
                    className={"bg-stone-100 bg-opacity-95 flex flex-col xl:flex-row justify-center items-center rounded-xl"}>
-              <div className={`flex flex-col justify-center items-center m-5`}>
+              <div className={`container flex flex-col justify-center items-center m-5`}>
                   <img
                       id={"profile_picture"}
                       src={`/images/profile_picture.png`}
@@ -46,7 +46,7 @@ export default async function Home() {
                       ))}
                   </ol>
               </div>
-              <div className={`flex flex-col justify-center items-center max-w-[800px]`}>
+              <div className={`flex flex-col justify-center items-center`}>
                   <h1>{sectionOneData.title}</h1>
                   <Text className={`md:text-2xl text-content`} text={sectionOneData.text}/>
               </div>

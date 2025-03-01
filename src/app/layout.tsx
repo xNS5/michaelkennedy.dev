@@ -41,12 +41,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
     <body
-        className={`${soraRegular.variable} bg-[url(/images/bixby-bridge.png)] bg-cover  sm:bg-[center_-10rem] min-h-[100vh] bg-no-repeat h-full w-full bg-black`}
+        className={`flex flex-col justify-center items-center ${soraRegular.variable} bg-[url(/images/bixby-bridge.png)] bg-cover bg-center bg-no-repeat bg-black`}
       >
       <header>
           <Navbar/>
       </header>
-      <main id="main-content" >
+      <main id="main-content">
           <Suspense fallback={<Loading/>}>
               {children}
           </Suspense>
