@@ -4,6 +4,7 @@ import {getDocument} from "@/db/db";
 import parse from "html-react-parser/lib/index";
 import Icon from "@/components/icons/icon";
 import type { Config } from '@/types/config';
+import Navbar from "@/components/navbar/navbar";
 
 export async function generateMetadata() {
     const { resume }: Config = await getDocument<Config>("config", "config");
@@ -25,7 +26,7 @@ export default async function Page(){
                     <Icon type={`far-circle-down`}/>
                 </span>
                 Download</a>
-            <div className={`invisible sm:visible bg-white my-2 p-10 mx-10 lg:max-w-[1200px] text-lg`}>
+            <div className={`invisible sm:visible bg-white my-2 p-10 mx-10 lg:max-w-[1200px] text-lg shadow-xl`}>
                 <style>
                     {resumeStylesheet}
                 </style>

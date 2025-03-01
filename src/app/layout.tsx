@@ -9,6 +9,7 @@ import {Suspense} from "react";
 import Loading from "@/app/loading";
 
 import "./globals.css";
+import Header from "@/components/header/header";
 
 
 const soraRegular = localFont({
@@ -40,7 +41,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
     <body
-        className={`${soraRegular.variable} asilomar`}
+        className={`flex flex-col justify-center items-center ${soraRegular.variable} bg-[url(/images/bixby-bridge.png)] bg-cover bg-center bg-no-repeat bg-black`}
       >
       <header>
           <Navbar/>
