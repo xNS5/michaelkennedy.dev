@@ -5,9 +5,23 @@ import Link from "next/link";
 import Icon from "@/components/icons/icon";
 import Article from "@/components/article/article";
 import type { Link as LinkType } from "@/types/config";
-// import type {Education, Project, Skill, Highlight, Work} from "@/types/work";
 
 import "./home.css";
+
+export async function generateMetadata(){
+    const config: Config = await getDocument<Config>("config", "config");
+
+    if(config){
+        return {
+            title: `${config.metadata.title} | ${config.home.title}`,
+            description: config.metadata.description,
+            icons: [
+                { rel: "icon", url: "/code-black.ico", media: '(prefers-color-scheme: light)'},
+                { rel: "icon", url: "/code-white.ico", media: '(prefers-color-scheme: dark)'}
+            ]
+        }
+    }
+}
 
 export default async function Home() {
   const {home} = await getDocument<Config>("config", "config");

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+
 import localFont from "next/font/local";
 import { getDocument } from "@/db/db";
 import { Config } from "@/types/config";
@@ -9,8 +9,6 @@ import {Suspense} from "react";
 import Loading from "@/app/loading";
 
 import "./globals.css";
-import Header from "@/components/header/header";
-
 
 const soraRegular = localFont({
   src: "./fonts/Sora-Regular.ttf",
@@ -18,29 +16,11 @@ const soraRegular = localFont({
   weight: "100 900",
 });
 
-export let metadata: Metadata;
-
-async function getMetadata(){
- const config: Config = await getDocument<Config>("config", "config");
-
- if(config){
-  metadata = {
-    title: config.metadata.title,
-    description: config.metadata.description,
-      icons: [
-          { rel: "icon", url: "/code-black.ico", media: '(prefers-color-scheme: light)'},
-          { rel: "icon", url: "/code-white.ico", media: '(prefers-color-scheme: dark)'}
-      ]
-   }
- }
-}
-
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await getMetadata();
 
   return (
     <html lang="en">
